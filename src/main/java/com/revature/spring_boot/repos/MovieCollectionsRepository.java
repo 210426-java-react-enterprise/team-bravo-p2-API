@@ -20,7 +20,7 @@ import java.util.List;
 public interface MovieCollectionsRepository extends JpaRepository<MovieCollections, Integer>{
 
 //  @Query("FROM MovieCollections mc where mc.collectionInfoId = :collectionInfoId")
-    MovieCollections findMovieCollectionsByCollectionInfoId(int collectionInfoId);
+//    MovieCollections findMovieCollectionsByCollectionInfoId(int collectionInfoId);
 
 //  @Query("FROM MovieCollections)
 //    List<MovieCollections> findAllMovieCollections();

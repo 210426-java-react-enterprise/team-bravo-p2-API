@@ -1,5 +1,7 @@
 package com.revature.spring_boot.models;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,7 +18,7 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name = "movie_collections", schema = "Project_Two")
+@Table(name = "movie_collections")
 public class MovieCollections {
 
     @Id()
