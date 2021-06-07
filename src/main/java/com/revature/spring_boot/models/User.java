@@ -12,8 +12,7 @@ import javax.validation.constraints.NotNull;
 public class User {
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "acct_id")
+    @Column(name = "user_id")
     private int id;
 
     @NotNull
@@ -27,6 +26,10 @@ public class User {
     @NotNull
     @Column
     private int age;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "acct_id")
+    private Account acct;
 
     public User(int id, String firstName, String lastName, int age) {
         this.id = id;
