@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "users")
 public class User {
 
+    @Id
     @OneToOne
     @JoinColumn(name = "acct_id")
     private int id;
@@ -32,6 +33,10 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public User(){
+
     }
 
     public int getId() {
