@@ -12,6 +12,7 @@ import java.util.UUID;
 public class Account {
 
     @Id
+    @Column(name = "acct_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -26,6 +27,12 @@ public class Account {
     @NotNull
     @Column(nullable = false)
     private String password;
+
+    public Account(String email, String username, String password) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
 
     public int getId() {
         return id;
