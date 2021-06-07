@@ -29,7 +29,7 @@ target/
 *.properties
 
 # Important yml
-src/main/resourcesapplication.yml
+src/main/resources/application.yml
 
 # IDE
 .idea/
