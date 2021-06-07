@@ -4,14 +4,10 @@ server:
 spring:
   application:
     name: spring-boot-poc
-  h2:
-    console:
-      enabled: true
-      path: /h2
-    url:
-    driver-class-name:
-    username:
-    password:
+  datasource:
+    url: jdbc:postgresql://jb-revature-projects.cidhmnbmwuma.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=Project_Two
+    username: james_bialon
+    password: revature
 
   logging:
     level:
@@ -19,11 +15,11 @@ spring:
         hibernate: INFO
         SQL: DEBUG
         cache: DEBUG
-        stat:
-          DEBUG
+        stat: DEBUG
 
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
       ddl-auto: validate

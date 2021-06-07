@@ -1,4 +1,4 @@
-package com.revature.spring_boot.models;
+/*package com.revature.spring_boot.models;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,3 +12,4 @@ public class User {
     private int age;
 
 }
+*/
