@@ -40,7 +40,7 @@ public class MovieCollectionsController {
         return movieCollectionsRepo.findAll();
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get/{movieCollectionsId")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get/{movieCollectionsId}")
     public Optional<MovieCollections> getAllMovieCollections(@PathVariable int movieCollectionsId) {
         return movieCollectionsRepo.findById(movieCollectionsId);
     }

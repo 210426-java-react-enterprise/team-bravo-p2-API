@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name = "movie_collections")
+@Table(name = "movie_collections", schema = "project_two")
 public class MovieCollections {
 
     @Id()
