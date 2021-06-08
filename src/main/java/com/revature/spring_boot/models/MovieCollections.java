@@ -13,7 +13,7 @@ public class MovieCollections {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="collection_id")
-    private int collId;
+    private int collItemId;
 
 /*
     @NotNull
@@ -51,12 +51,12 @@ public class MovieCollections {
     @Column(name ="tradeable")
     private int tradeable;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "collection_info_id", nullable = false/*, insertable = false, updatable = false*/)
     private CollectionInfo collectionInfo;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "movie_id", nullable = false/*, insertable = false, updatable = false*/)
     private Movies movies;
@@ -78,12 +78,12 @@ public class MovieCollections {
         this.movies = movies;
     }
 
-    public int getCollId() {
-        return collId;
+    public int getCollItemId() {
+        return collItemId;
     }
 
     public void setCollId(int collId) {
-        this.collId = collId;
+        this.collItemId = collId;
     }
 
 //    public int getCollInfoId() {
