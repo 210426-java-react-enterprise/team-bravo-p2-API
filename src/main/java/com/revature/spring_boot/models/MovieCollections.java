@@ -46,10 +46,12 @@ public class MovieCollections {
     @Column(name ="tradeable")
     private int tradeable;
 
-    @ManyToOne
+    @ManyToOne()
+    @JoinColumn(name = "collection_info_id", nullable = false, insertable = false, updatable = false)
     private CollectionInfo collectionInfo;
 
     @ManyToOne
+    @JoinColumn(name = "movie_id", nullable = false, insertable = false, updatable = false)
     private Movies movies;
 
 

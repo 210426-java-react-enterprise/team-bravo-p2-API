@@ -44,11 +44,12 @@ public class CollectionInfo {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name ="collection_info_id")
+    @OneToMany(mappedBy = "collectionInfo")
+//    @JoinColumn(name ="collection_info_id")
     private Set<MovieCollections> movieCollectionsSet;
 
     @ManyToOne
+    @JoinColumn(name = "type_id", nullable = false, insertable = false, updatable = false)
     private CollectionType collectionType;
 
     public Set<MovieCollections> getMovieCollectionsSet() {

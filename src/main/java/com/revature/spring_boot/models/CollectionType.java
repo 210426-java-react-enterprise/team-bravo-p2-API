@@ -17,8 +17,9 @@ public class CollectionType {
     @Column(name = "medium_type",unique = true, nullable = false)
     private String mediumType;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "type_id")
+    @OneToMany(mappedBy="collectionType")
+//    cascade = CascadeType.ALL
+//    @JoinColumn(name = "coll_type_id", referencedColumnName = "type_id", insertable = false, updatable = false)
     private Set<CollectionInfo> collectionInfoSet;
 
     public Set<CollectionInfo> getCollInfo() {
