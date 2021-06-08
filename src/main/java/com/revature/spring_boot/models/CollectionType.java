@@ -23,7 +23,7 @@ public class CollectionType {
     private String mediumType;
 
     @JsonIgnore
-    @OneToMany(mappedBy="collectionType", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="collectionType"/*, fetch = FetchType.LAZY*/)
     private List<CollectionInfo> collectionInfoSet;
 
 //    cascade = CascadeType.ALL

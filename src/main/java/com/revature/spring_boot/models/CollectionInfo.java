@@ -55,9 +55,9 @@ public class CollectionInfo {
 //    @JoinColumn(name ="collection_info_id")
     private List<MovieCollections> movieCollectionsSet;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id", nullable = false, referencedColumnName = "coll_type_id")
-    @JsonIgnore
+    //@JsonIgnore
     private CollectionType collectionType;
 
     public List<MovieCollections> getMovieCollectionsSet() {
