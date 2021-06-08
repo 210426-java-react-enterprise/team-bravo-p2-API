@@ -26,9 +26,6 @@ public class CollectionType {
     @OneToMany(mappedBy="collectionType"/*, fetch = FetchType.LAZY*/)
     private List<CollectionInfo> collectionInfoSet;
 
-//    cascade = CascadeType.ALL
-//    @JoinColumn(name = "coll_type_id", referencedColumnName = "type_id", insertable = false, updatable = false)
-
     public List<CollectionInfo> getCollectionInfoSet() {
         return collectionInfoSet;
     }

@@ -15,25 +15,6 @@ public class MovieCollections {
     @Column(name="collection_id")
     private int collItemId;
 
-/*
-    @NotNull
-    @Column(name = "collection_info_id", nullable = false)
-    private int collInfoId;
-*/
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "collection_info_id", referencedColumnName = "collection_info_id")
-//    private CollectionInfo collInfoIdClass;
-
-/*
-    @NotNull
-    @Column(name="movie_id", nullable = false)
-    private int movieId;
-*/
-
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
-//    private Movies moviesIdClass;
-
     @NotNull
     @Column(name ="owned", nullable = false)
     private int owned;
@@ -51,14 +32,12 @@ public class MovieCollections {
     @Column(name ="tradeable")
     private int tradeable;
 
-    //@JsonIgnore
     @ManyToOne()
-    @JoinColumn(name = "collection_info_id", nullable = false/*, insertable = false, updatable = false*/)
+    @JoinColumn(name = "collection_info_id", nullable = false)
     private CollectionInfo collectionInfo;
 
-    //@JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "movie_id", nullable = false/*, insertable = false, updatable = false*/)
+    @JoinColumn(name = "movie_id", nullable = false)
     private Movies movies;
 
 
@@ -85,39 +64,6 @@ public class MovieCollections {
     public void setCollId(int collId) {
         this.collItemId = collId;
     }
-
-//    public int getCollInfoId() {
-//        return collInfoId;
-//    }
-
-//    public void setCollInfoId(int collInfoId) {
-//        this.collInfoId = collInfoId;
-//    }
-
-//    public CollectionInfo getCollInfoIdClass() {
-//        return collInfoIdClass;
-//    }
-
-//    public void setCollInfoIdClass(CollectionInfo collInfoIdClass) {
-//        this.collInfoIdClass = collInfoIdClass;
-//    }
-
-/*
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
-    }
-*/
-//    public Movies getMoviesIdClass() {
-//        return moviesIdClass;
-//    }
-
-//    public void setMoviesIdClass(Movies moviesIdClass) {
-//        this.moviesIdClass = moviesIdClass;
-//    }
 
     public int getOwned() {
         return owned;

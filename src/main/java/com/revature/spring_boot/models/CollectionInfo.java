@@ -24,25 +24,6 @@ public class CollectionInfo {
     @Column(name="acct_id",nullable = false)
      private int acctId;
 
-    /**
-     * Uncomment after accounts table is created
-     * FK constraint
-     */
-    //should maybe be a many to one?
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "acct_id", referencedColumnName = "acct_id")
-    //private Accounts accountsAcctId
-
-    //FK
-/*
-    @NotNull
-    @Column(name = "type_id",nullable = false)
-    private int typeId;
-*/
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "type_id", referencedColumnName = "coll_type_type")
-//    private CollectionInfo collTypeId;
-
     @NotNull
     @Column(name = "coll_name", nullable = false)
     private String collectionName;
@@ -52,12 +33,10 @@ public class CollectionInfo {
 
     @OneToMany(mappedBy = "collectionInfo")
     @JsonIgnore
-//    @JoinColumn(name ="collection_info_id")
     private List<MovieCollections> movieCollectionsSet;
 
     @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id", nullable = false, referencedColumnName = "coll_type_id")
-    //@JsonIgnore
     private CollectionType collectionType;
 
     public List<MovieCollections> getMovieCollectionsSet() {
@@ -67,23 +46,6 @@ public class CollectionInfo {
     public void setMovieCollectionsSet(List<MovieCollections> movieCollectionsSet) {
         this.movieCollectionsSet = movieCollectionsSet;
     }
-/*
-    public int getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
-    }
-*/
-//    public void setCollTypeId(CollectionInfo collTypeId) {
-//        this.collTypeId = collTypeId;
-//    }
-//
-//    public CollectionInfo getCollTypeId() {
-//        return collTypeId;
-//    }
-
 
     public CollectionType getCollectionType() {
         return collectionType;
@@ -108,15 +70,7 @@ public class CollectionInfo {
     public void setAcctId(int acctId) {
         this.acctId = acctId;
     }
-/*
-    public int getTypeID() {
-        return typeId;
-    }
 
-    public void setTypeID(int typeID) {
-        this.typeId = typeID;
-    }
-*/
     public String getCollectionName() {
         return collectionName;
     }
