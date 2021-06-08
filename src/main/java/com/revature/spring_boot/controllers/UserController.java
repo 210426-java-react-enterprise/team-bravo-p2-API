@@ -1,3 +1,4 @@
+
 package com.revature.spring_boot.controllers;
 
 
@@ -7,3 +8,4 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 }
+
