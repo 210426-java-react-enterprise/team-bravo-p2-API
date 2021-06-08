@@ -2,6 +2,7 @@ package com.revature.spring_boot.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Table(name = "movies")
@@ -39,6 +40,18 @@ public class Movies {
     @NotNull
     @Column(name = "prod_company", nullable = false)
     private String prodCompany;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="movie_id")
+    private Set<MovieCollections> movieCollectionSet;
+
+    public Set<MovieCollections> getMovieCollectionSet() {
+        return movieCollectionSet;
+    }
+
+    public void setMovieCollectionSet(Set<MovieCollections> movieCollectionSet) {
+        this.movieCollectionSet = movieCollectionSet;
+    }
 
     public int getMovieId() {
         return movieId;

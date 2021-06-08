@@ -16,17 +16,17 @@ public class MovieCollections {
     @Column(name = "collection_info_id", nullable = false)
     private int collInfoId;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "collection_info_id", referencedColumnName = "collection_info_id")
-    private CollectionInfo collInfoIdClass;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "collection_info_id", referencedColumnName = "collection_info_id")
+//    private CollectionInfo collInfoIdClass;
 
     @NotNull
     @Column(name="movie_id", nullable = false)
     private int movieId;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
-    private Movies moviesIdClass;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
+//    private Movies moviesIdClass;
 
     @NotNull
     @Column(name ="owned", nullable = false)
@@ -45,6 +45,29 @@ public class MovieCollections {
     @Column(name ="tradeable")
     private int tradeable;
 
+    @ManyToOne
+    private CollectionInfo collectionInfo;
+
+    @ManyToOne
+    private Movies movies;
+
+
+    public CollectionInfo getCollectionInfo() {
+        return collectionInfo;
+    }
+
+    public void setCollectionInfo(CollectionInfo collectionInfo) {
+        this.collectionInfo = collectionInfo;
+    }
+
+    public Movies getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Movies movies) {
+        this.movies = movies;
+    }
+
     public int getCollId() {
         return collId;
     }
@@ -61,13 +84,13 @@ public class MovieCollections {
         this.collInfoId = collInfoId;
     }
 
-    public CollectionInfo getCollInfoIdClass() {
-        return collInfoIdClass;
-    }
+//    public CollectionInfo getCollInfoIdClass() {
+//        return collInfoIdClass;
+//    }
 
-    public void setCollInfoIdClass(CollectionInfo collInfoIdClass) {
-        this.collInfoIdClass = collInfoIdClass;
-    }
+//    public void setCollInfoIdClass(CollectionInfo collInfoIdClass) {
+//        this.collInfoIdClass = collInfoIdClass;
+//    }
 
     public int getMovieId() {
         return movieId;
@@ -77,13 +100,13 @@ public class MovieCollections {
         this.movieId = movieId;
     }
 
-    public Movies getMoviesIdClass() {
-        return moviesIdClass;
-    }
+//    public Movies getMoviesIdClass() {
+//        return moviesIdClass;
+//    }
 
-    public void setMoviesIdClass(Movies moviesIdClass) {
-        this.moviesIdClass = moviesIdClass;
-    }
+//    public void setMoviesIdClass(Movies moviesIdClass) {
+//        this.moviesIdClass = moviesIdClass;
+//    }
 
     public int getOwned() {
         return owned;

@@ -2,6 +2,7 @@ package com.revature.spring_boot.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Table(name="collection_types")
@@ -15,6 +16,18 @@ public class CollectionType {
     @NotNull
     @Column(name = "medium_type",unique = true, nullable = false)
     private String mediumType;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "type_id")
+    private Set<CollectionInfo> collectionInfoSet;
+
+    public Set<CollectionInfo> getCollInfo() {
+        return collectionInfoSet;
+    }
+
+    public void setCollInfo(Set<CollectionInfo> collInfo) {
+        this.collectionInfoSet = collInfo;
+    }
 
     public int getId() {
         return id;
