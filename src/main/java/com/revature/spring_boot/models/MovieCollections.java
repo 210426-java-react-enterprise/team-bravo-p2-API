@@ -1,6 +1,8 @@
 package com.revature.spring_boot.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -46,10 +48,12 @@ public class MovieCollections {
     @Column(name ="tradeable")
     private int tradeable;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "collection_info_id", nullable = false, insertable = false, updatable = false)
     private CollectionInfo collectionInfo;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "movie_id", nullable = false, insertable = false, updatable = false)
     private Movies movies;

@@ -1,5 +1,7 @@
 package com.revature.spring_boot.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -41,6 +43,7 @@ public class Movies {
     @Column(name = "prod_company", nullable = false)
     private String prodCompany;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "movies")
     private Set<MovieCollections> movieCollectionSet;
 

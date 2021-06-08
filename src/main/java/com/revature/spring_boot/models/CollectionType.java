@@ -20,6 +20,7 @@ public class CollectionType {
     @Column(name = "medium_type",unique = true, nullable = false)
     private String mediumType;
 
+    @JsonIgnore
     @OneToMany(mappedBy="collectionType", fetch = FetchType.LAZY)
     private Set<CollectionInfo> collectionInfoSet;
 
