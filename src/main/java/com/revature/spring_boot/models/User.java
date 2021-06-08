@@ -5,11 +5,11 @@ import javax.persistence.GenerationType;
 
 public class User {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
-    private String firstName;
-    private String lastName;
-    private int age;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Integer userId;
+//    private String firstName;
+//    private String lastName;
+//    private int age;
 
 }
 */
