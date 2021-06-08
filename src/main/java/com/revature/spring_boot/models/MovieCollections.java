@@ -1,70 +1,104 @@
 package com.revature.spring_boot.models;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-/**
- * Created by IntelliJ IDEA.
- * User: Jbialon
- * Date: 6/7/2021
- * Time: 11:11 AM
- * Description: {Insert Description}
- */
-
 
 @Entity
 @Table(name = "movie_collections")
 public class MovieCollections {
 
-    @Id()
-    @Column(name = "collection_id")
-    private int collectionId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="collection_id")
+    private int collId;
 
     @NotNull
-    @Column(name = "collection_info_id")
-    private int collectionInfoId;
+    @Column(name = "collection_info_id", nullable = false)
+    private int collInfoId;
+
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "collection_info_id", referencedColumnName = "collection_info_id")
+//    private CollectionInfo collInfoIdClass;
 
     @NotNull
-    @Column(name = "movie_id")
+    @Column(name="movie_id", nullable = false)
     private int movieId;
 
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
+//    private Movies moviesIdClass;
+
     @NotNull
-    @Column()
+    @Column(name ="owned", nullable = false)
     private int owned;
 
     @NotNull
-    @Column()
+    @Column(name ="watched", nullable = false)
     private int watched;
 
-    @Column(name = "user_rating")
+    @Column(name ="user_rating")
     private int userRating;
 
-    @Column()
-    private int tradeable;
-
-    @Column(name = "user_comment")
+    @Column(name ="user_comment")
     private String userComment;
 
-    public int getCollectionId() {
-        return collectionId;
+    @Column(name ="tradeable")
+    private int tradeable;
+
+    @JsonIgnore
+    @ManyToOne()
+    @JoinColumn(name = "collection_info_id", nullable = false, insertable = false, updatable = false)
+    private CollectionInfo collectionInfo;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "movie_id", nullable = false, insertable = false, updatable = false)
+    private Movies movies;
+
+
+    public CollectionInfo getCollectionInfo() {
+        return collectionInfo;
     }
 
-    public void setCollectionId(int collectionId) {
-        this.collectionId = collectionId;
+    public void setCollectionInfo(CollectionInfo collectionInfo) {
+        this.collectionInfo = collectionInfo;
     }
 
-    public int getCollectionInfoId() {
-        return collectionInfoId;
+    public Movies getMovies() {
+        return movies;
     }
 
-    public void setCollectionInfoId(int collectionInfoId) {
-        this.collectionInfoId = collectionInfoId;
+    public void setMovies(Movies movies) {
+        this.movies = movies;
     }
+
+    public int getCollId() {
+        return collId;
+    }
+
+    public void setCollId(int collId) {
+        this.collId = collId;
+    }
+
+//    public int getCollInfoId() {
+//        return collInfoId;
+//    }
+
+    public void setCollInfoId(int collInfoId) {
+        this.collInfoId = collInfoId;
+    }
+
+//    public CollectionInfo getCollInfoIdClass() {
+//        return collInfoIdClass;
+//    }
+
+//    public void setCollInfoIdClass(CollectionInfo collInfoIdClass) {
+//        this.collInfoIdClass = collInfoIdClass;
+//    }
+
 
     public int getMovieId() {
         return movieId;
@@ -73,6 +107,14 @@ public class MovieCollections {
     public void setMovieId(int movieId) {
         this.movieId = movieId;
     }
+
+//    public Movies getMoviesIdClass() {
+//        return moviesIdClass;
+//    }
+
+//    public void setMoviesIdClass(Movies moviesIdClass) {
+//        this.moviesIdClass = moviesIdClass;
+//    }
 
     public int getOwned() {
         return owned;
@@ -98,13 +140,6 @@ public class MovieCollections {
         this.userRating = userRating;
     }
 
-    public int getTradeable() {
-        return tradeable;
-    }
-
-    public void setTradeable(int tradeable) {
-        this.tradeable = tradeable;
-    }
 
     public String getUserComment() {
         return userComment;
@@ -113,4 +148,13 @@ public class MovieCollections {
     public void setUserComment(String userComment) {
         this.userComment = userComment;
     }
+
+    public int getTradeable() {
+        return tradeable;
+    }
+
+    public void setTradeable(int tradeable) {
+        this.tradeable = tradeable;
+    }
+
 }

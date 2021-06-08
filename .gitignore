@@ -28,6 +28,7 @@ target/
 
 # Properties files
 *.properties
+application.yml
 
 # Important yml
 src/resources/application.yml
