@@ -21,7 +21,6 @@ public class CollectionType {
     private String mediumType;
 
     @OneToMany(mappedBy="collectionType", fetch = FetchType.LAZY)
-    @JsonBackReference
     private Set<CollectionInfo> collectionInfoSet;
 
 //    cascade = CascadeType.ALL
@@ -38,10 +37,6 @@ public class CollectionType {
 
     public Set<CollectionInfo> getCollInfo() {
         return collectionInfoSet;
-    }
-
-    public void setCollInfo(Set<CollectionInfo> collInfo) {
-        this.collectionInfoSet = collInfo;
     }
 
     public int getId() {

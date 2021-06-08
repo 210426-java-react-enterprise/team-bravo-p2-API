@@ -48,12 +48,13 @@ public class CollectionInfo {
     private String description;
 
     @OneToMany(mappedBy = "collectionInfo")
+    @JsonIgnore
 //    @JoinColumn(name ="collection_info_id")
     private Set<MovieCollections> movieCollectionsSet;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id", nullable = false, referencedColumnName = "coll_type_id", insertable = false, updatable = false)
-    @JsonManagedReference
+    @JsonIgnore
     private CollectionType collectionType;
 
     public Set<MovieCollections> getMovieCollectionsSet() {
