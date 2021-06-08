@@ -44,7 +44,6 @@ public class MovieCollectionsController {
         return movieCollectionsRepo.findById(movieCollectionsId);
     }
 
-
     @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/update")
     public ResponseEntity<String> updateMovieCollections(@RequestBody MovieCollections movieRequest) {
         Optional<MovieCollections> movieCollections = movieCollectionsRepo.findById(movieRequest.getMovieId());
@@ -58,5 +57,15 @@ public class MovieCollectionsController {
             }
 
             return new ResponseEntity<String>("Sorry, we cannot find that collection item"+ movieRequest.getMovieId(), HttpStatus.BAD_REQUEST);
+    }
+
+    @DeleteMapping(value = "deleteItem/{movieCollectionId}")
+    public ResponseEntity<String> deleteMovieCollections(@PathVariable int movieCollectionId){
+        Optional<MovieCollections> movieCollections = movieCollectionsRepo.findById(movieCollectionId);
+        if(movieCollections.isPresent()) {
+            movieCollectionsRepo.delete(movieCollections.get());
+            return new ResponseEntity<String>("Movie item has been deleted successfully", HttpStatus.OK);
+        }
+        return new ResponseEntity<String>("Cannot find that collection item" + movieCollectionId, HttpStatus.BAD_REQUEST);
     }
 }
