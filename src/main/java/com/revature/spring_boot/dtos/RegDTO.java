@@ -12,7 +12,7 @@ public class RegDTO {
     @NotEmpty
     private String lastName;
 
-    @NotEmpty
+    @NotNull
     private int age;
 
     @NotEmpty

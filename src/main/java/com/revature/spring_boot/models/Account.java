@@ -13,6 +13,7 @@ public class Account {
 
     @Id
     @Column(name = "acct_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Email

@@ -48,17 +48,15 @@ public class AccountController {
         return accountRepo.findAccountByUsernameAndPassword(creds.getUsername(), creds.getPassword());
     }
 
- /*   @PostMapping(value="/register", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value="/register", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public Map<String, Object> register(@RequestBody @Valid RegDTO regDTO){
-        Account account = new Account(regDTO.getEmail(), regDTO.getUsername(), regDTO.getPassword());
-        accountRepo.save(account);
-        User user = new User(account.getId(), regDTO.getFirstName(), regDTO.getLastName(), regDTO.getAge());
-        userRepo.save(user);
+        Account account = accountRepo.save(new Account(regDTO.getEmail(), regDTO.getUsername(), regDTO.getPassword()));
+        User user = userRepo.save(new User(account.getId(), regDTO.getFirstName(), regDTO.getLastName(), regDTO.getAge()));
         Map<String, Object> map = new HashMap<>();
         map.put("User", user);
         map.put("Account", account);
         return map;
-    } */
+    }
 
 
 }
