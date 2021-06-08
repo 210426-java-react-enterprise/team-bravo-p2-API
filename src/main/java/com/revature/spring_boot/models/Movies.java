@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -45,13 +46,13 @@ public class Movies {
 
     @JsonIgnore
     @OneToMany(mappedBy = "movies")
-    private Set<MovieCollections> movieCollectionSet;
+    private List<MovieCollections> movieCollectionSet;
 
-    public Set<MovieCollections> getMovieCollectionSet() {
+    public List<MovieCollections> getMovieCollectionSet() {
         return movieCollectionSet;
     }
 
-    public void setMovieCollectionSet(Set<MovieCollections> movieCollectionSet) {
+    public void setMovieCollectionSet(List<MovieCollections> movieCollectionSet) {
         this.movieCollectionSet = movieCollectionSet;
     }
 
