@@ -48,8 +48,8 @@ public class CollectionInfo {
 //    @JoinColumn(name ="collection_info_id")
     private Set<MovieCollections> movieCollectionsSet;
 
-    @ManyToOne
-    @JoinColumn(name = "type_id", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_id", nullable = false, referencedColumnName = "coll_type_id", insertable = false, updatable = false)
     private CollectionType collectionType;
 
     public Set<MovieCollections> getMovieCollectionsSet() {

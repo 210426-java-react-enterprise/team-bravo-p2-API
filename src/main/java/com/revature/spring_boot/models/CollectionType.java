@@ -17,10 +17,20 @@ public class CollectionType {
     @Column(name = "medium_type",unique = true, nullable = false)
     private String mediumType;
 
-    @OneToMany(mappedBy="collectionType")
+    @OneToMany(mappedBy="collectionType", fetch = FetchType.LAZY)
+    private Set<CollectionInfo> collectionInfoSet;
+
 //    cascade = CascadeType.ALL
 //    @JoinColumn(name = "coll_type_id", referencedColumnName = "type_id", insertable = false, updatable = false)
-    private Set<CollectionInfo> collectionInfoSet;
+
+    public Set<CollectionInfo> getCollectionInfoSet() {
+        return collectionInfoSet;
+    }
+
+    public void setCollectionInfoSet(Set<CollectionInfo> collectionInfoSet) {
+        this.collectionInfoSet = collectionInfoSet;
+    }
+
 
     public Set<CollectionInfo> getCollInfo() {
         return collectionInfoSet;
