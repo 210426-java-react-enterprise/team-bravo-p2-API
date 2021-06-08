@@ -44,4 +44,5 @@ public class CollectionType {
     public void setMediumType(String mediumType) {
         this.mediumType = mediumType;
     }
+
 }

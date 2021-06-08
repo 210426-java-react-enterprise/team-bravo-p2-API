@@ -29,6 +29,9 @@ target/
 # Properties files
 *.properties
 
+# Important yml
+src/resources/application.yml
+
 # IDE
 .idea/
 *.iml

@@ -1,5 +1,6 @@
 package com.revature.spring_boot.models;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -92,6 +93,7 @@ public class MovieCollections {
 //        this.collInfoIdClass = collInfoIdClass;
 //    }
 
+
     public int getMovieId() {
         return movieId;
     }
@@ -132,6 +134,7 @@ public class MovieCollections {
         this.userRating = userRating;
     }
 
+
     public String getUserComment() {
         return userComment;
     }
@@ -147,4 +150,5 @@ public class MovieCollections {
     public void setTradeable(int tradeable) {
         this.tradeable = tradeable;
     }
+
 }
