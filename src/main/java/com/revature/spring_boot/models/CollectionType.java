@@ -1,5 +1,8 @@
 package com.revature.spring_boot.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -17,16 +20,23 @@ public class CollectionType {
     @Column(name = "medium_type",unique = true, nullable = false)
     private String mediumType;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "type_id")
+    @OneToMany(mappedBy="collectionType", fetch = FetchType.LAZY)
     private Set<CollectionInfo> collectionInfoSet;
 
-    public Set<CollectionInfo> getCollInfo() {
+//    cascade = CascadeType.ALL
+//    @JoinColumn(name = "coll_type_id", referencedColumnName = "type_id", insertable = false, updatable = false)
+
+    public Set<CollectionInfo> getCollectionInfoSet() {
         return collectionInfoSet;
     }
 
-    public void setCollInfo(Set<CollectionInfo> collInfo) {
-        this.collectionInfoSet = collInfo;
+    public void setCollectionInfoSet(Set<CollectionInfo> collectionInfoSet) {
+        this.collectionInfoSet = collectionInfoSet;
+    }
+
+
+    public Set<CollectionInfo> getCollInfo() {
+        return collectionInfoSet;
     }
 
     public int getId() {

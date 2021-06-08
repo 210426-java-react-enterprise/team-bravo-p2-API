@@ -41,8 +41,7 @@ public class Movies {
     @Column(name = "prod_company", nullable = false)
     private String prodCompany;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="movie_id")
+    @OneToMany(mappedBy = "movies")
     private Set<MovieCollections> movieCollectionSet;
 
     public Set<MovieCollections> getMovieCollectionSet() {
