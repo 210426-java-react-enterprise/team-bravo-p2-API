@@ -83,9 +83,9 @@ public class MovieCollections {
         this.collId = collId;
     }
 
-    public int getCollInfoId() {
-        return collInfoId;
-    }
+//    public int getCollInfoId() {
+//        return collInfoId;
+//    }
 
     public void setCollInfoId(int collInfoId) {
         this.collInfoId = collInfoId;

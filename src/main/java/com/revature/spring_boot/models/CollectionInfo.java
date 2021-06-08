@@ -32,10 +32,11 @@ public class CollectionInfo {
     //private Accounts accountsAcctId
 
     //FK
+/*
     @NotNull
     @Column(name = "type_id",nullable = false)
     private int typeId;
-
+*/
 //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "type_id", referencedColumnName = "coll_type_type")
 //    private CollectionInfo collTypeId;
@@ -53,7 +54,7 @@ public class CollectionInfo {
     private Set<MovieCollections> movieCollectionsSet;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type_id", nullable = false, referencedColumnName = "coll_type_id", insertable = false, updatable = false)
+    @JoinColumn(name = "type_id", nullable = false, referencedColumnName = "coll_type_id"/*, insertable = false, updatable = false*/)
     @JsonIgnore
     private CollectionType collectionType;
 
@@ -64,7 +65,7 @@ public class CollectionInfo {
     public void setMovieCollectionsSet(Set<MovieCollections> movieCollectionsSet) {
         this.movieCollectionsSet = movieCollectionsSet;
     }
-
+/*
     public int getTypeId() {
         return typeId;
     }
@@ -72,7 +73,7 @@ public class CollectionInfo {
     public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
-
+*/
 //    public void setCollTypeId(CollectionInfo collTypeId) {
 //        this.collTypeId = collTypeId;
 //    }
@@ -104,7 +105,7 @@ public class CollectionInfo {
     public void setAcctId(int acctId) {
         this.acctId = acctId;
     }
-
+/*
     public int getTypeID() {
         return typeId;
     }
@@ -112,7 +113,7 @@ public class CollectionInfo {
     public void setTypeID(int typeID) {
         this.typeId = typeID;
     }
-
+*/
     public String getCollectionName() {
         return collectionName;
     }

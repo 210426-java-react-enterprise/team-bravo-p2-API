@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,22 +23,17 @@ public class CollectionType {
 
     @JsonIgnore
     @OneToMany(mappedBy="collectionType", fetch = FetchType.LAZY)
-    private Set<CollectionInfo> collectionInfoSet;
+    private List<CollectionInfo> collectionInfoSet;
 
 //    cascade = CascadeType.ALL
 //    @JoinColumn(name = "coll_type_id", referencedColumnName = "type_id", insertable = false, updatable = false)
 
-    public Set<CollectionInfo> getCollectionInfoSet() {
+    public List<CollectionInfo> getCollectionInfoSet() {
         return collectionInfoSet;
     }
 
-    public void setCollectionInfoSet(Set<CollectionInfo> collectionInfoSet) {
+    public void setCollectionInfoSet(List<CollectionInfo> collectionInfoSet) {
         this.collectionInfoSet = collectionInfoSet;
-    }
-
-
-    public Set<CollectionInfo> getCollInfo() {
-        return collectionInfoSet;
     }
 
     public int getId() {
