@@ -10,7 +10,7 @@
         <version>2.3.11.RELEASE</version>
     </parent>
 
-   <groupId>com.revature</groupId>
+    <groupId>com.revature</groupId>
     <artifactId>team-bravo-p2-API</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -56,5 +56,7 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.12</version>
         </dependency>
+
     </dependencies>
+
 </project>
