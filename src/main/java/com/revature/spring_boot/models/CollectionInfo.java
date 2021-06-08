@@ -1,6 +1,9 @@
 package com.revature.spring_boot.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -50,6 +53,7 @@ public class CollectionInfo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id", nullable = false, referencedColumnName = "coll_type_id", insertable = false, updatable = false)
+    @JsonManagedReference
     private CollectionType collectionType;
 
     public Set<MovieCollections> getMovieCollectionsSet() {
