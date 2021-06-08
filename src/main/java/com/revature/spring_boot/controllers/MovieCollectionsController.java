@@ -45,9 +45,10 @@ public class MovieCollectionsController {
     }
 
 
+    // TODO: This will need some testing...
     @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/update")
     public ResponseEntity<String> updateMovieCollections(@RequestBody MovieCollections movieRequest) {
-        Optional<MovieCollections> movieCollections = movieCollectionsRepo.findById(movieRequest.getMovieId());
+        Optional<MovieCollections> movieCollections = movieCollectionsRepo.findById(movieRequest.getMovies().getMovieId());
             if(movieCollections.isPresent()) {
                 movieCollections.get().setUserRating(movieRequest.getUserRating());
                 movieCollections.get().setTradeable(movieRequest.getTradeable());
@@ -57,6 +58,6 @@ public class MovieCollectionsController {
                 return new ResponseEntity<String>("Your collection has been updated successfully", HttpStatus.OK);
             }
 
-            return new ResponseEntity<String>("Sorry, we cannot find that collection item"+ movieRequest.getMovieId(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Sorry, we cannot find that collection item"+ movieRequest.getMovies().getMovieId(), HttpStatus.BAD_REQUEST);
     }
 }

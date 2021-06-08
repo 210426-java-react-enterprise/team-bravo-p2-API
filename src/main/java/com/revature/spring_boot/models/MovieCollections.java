@@ -15,17 +15,20 @@ public class MovieCollections {
     @Column(name="collection_id")
     private int collId;
 
+/*
     @NotNull
     @Column(name = "collection_info_id", nullable = false)
     private int collInfoId;
-
+*/
 //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "collection_info_id", referencedColumnName = "collection_info_id")
 //    private CollectionInfo collInfoIdClass;
 
+/*
     @NotNull
     @Column(name="movie_id", nullable = false)
     private int movieId;
+*/
 
 //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
@@ -50,12 +53,12 @@ public class MovieCollections {
 
     @JsonIgnore
     @ManyToOne()
-    @JoinColumn(name = "collection_info_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "collection_info_id", nullable = false/*, insertable = false, updatable = false*/)
     private CollectionInfo collectionInfo;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "movie_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "movie_id", nullable = false/*, insertable = false, updatable = false*/)
     private Movies movies;
 
 
@@ -87,9 +90,9 @@ public class MovieCollections {
 //        return collInfoId;
 //    }
 
-    public void setCollInfoId(int collInfoId) {
-        this.collInfoId = collInfoId;
-    }
+//    public void setCollInfoId(int collInfoId) {
+//        this.collInfoId = collInfoId;
+//    }
 
 //    public CollectionInfo getCollInfoIdClass() {
 //        return collInfoIdClass;
@@ -99,7 +102,7 @@ public class MovieCollections {
 //        this.collInfoIdClass = collInfoIdClass;
 //    }
 
-
+/*
     public int getMovieId() {
         return movieId;
     }
@@ -107,7 +110,7 @@ public class MovieCollections {
     public void setMovieId(int movieId) {
         this.movieId = movieId;
     }
-
+*/
 //    public Movies getMoviesIdClass() {
 //        return moviesIdClass;
 //    }
@@ -139,7 +142,6 @@ public class MovieCollections {
     public void setUserRating(int userRating) {
         this.userRating = userRating;
     }
-
 
     public String getUserComment() {
         return userComment;
