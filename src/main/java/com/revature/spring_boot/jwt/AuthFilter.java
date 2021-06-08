@@ -52,8 +52,6 @@ public class AuthFilter extends HttpFilter {
                     .parseClaimsJws(token)
                     .getBody();
 
-            //req.setAttribute("principal", new Principal(jwtClaims));
-
         } catch (Exception e) {
             e.printStackTrace();
         }
