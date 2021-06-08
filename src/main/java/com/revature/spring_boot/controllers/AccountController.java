@@ -3,6 +3,8 @@ package com.revature.spring_boot.controllers;
 
 import com.revature.spring_boot.dtos.Credentials;
 import com.revature.spring_boot.dtos.RegDTO;
+import com.revature.spring_boot.jwt.JwtConfig;
+import com.revature.spring_boot.jwt.TokenGenerator;
 import com.revature.spring_boot.models.Account;
 import com.revature.spring_boot.models.User;
 import com.revature.spring_boot.repos.AccountRepository;
@@ -12,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -25,11 +28,15 @@ public class AccountController {
     private Logger logger = LoggerFactory.getLogger(AccountController.class);
     private AccountRepository accountRepo;
     private UserRepository userRepo;
+    private TokenGenerator tokenGenerator;
+    private JwtConfig jwtConfig;
 
     @Autowired
-    public AccountController(AccountRepository accountRepo, UserRepository userRepo) {
+    public AccountController(AccountRepository accountRepo, UserRepository userRepo, TokenGenerator tokenGenerator, JwtConfig jwtConfig) {
         this.accountRepo = accountRepo;
         this.userRepo = userRepo;
+        this.tokenGenerator = tokenGenerator;
+        this.jwtConfig = jwtConfig;
     }
 
     @GetMapping("/test")
@@ -38,14 +45,12 @@ public class AccountController {
         return "/users/test works!";
     }
 
-    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public Account registerNewAccount(@RequestBody @Valid Account newAccount) {
-        return accountRepo.save(newAccount);
-    }
-
     @PostMapping(value = "/login", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public Account authenticate(@RequestBody @Valid Credentials creds) {
-        return accountRepo.findAccountByUsernameAndPassword(creds.getUsername(), creds.getPassword());
+    public Account authenticate(@RequestBody @Valid Credentials creds, HttpServletResponse resp) {
+        Account account = accountRepo.findAccountByUsernameAndPassword(creds.getUsername(), creds.getPassword());
+        String jwt = tokenGenerator.createJwt(account);
+        resp.setHeader(jwtConfig.getHeader(), jwt);
+        return account;
     }
 
     @PostMapping(value="/register", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
