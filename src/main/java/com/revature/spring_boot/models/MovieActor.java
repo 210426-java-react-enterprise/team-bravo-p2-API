@@ -1,6 +1,10 @@
 package com.revature.spring_boot.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,11 +22,19 @@ public class MovieActor {
     @Column(name = "ma_key", nullable = false)
     private int movieActorId;
 
-//Instantiate actors? manytomany
-    //private Actors actors;
 
-    //instantiate movies many to one
-//    @Column(name = "movie_id", nullable = false)
-//    private Movie movieId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie", nullable = false)
+    private Movies movies;
+
+
+    @JoinTable(
+            name = "movieActor",
+            joinColumns = @JoinColumn(name = "actor"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id")
+    )
+    @ManyToMany(mappedBy = "movieActorList")
+    private List<Actor> actorList;
+
 
 }

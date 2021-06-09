@@ -1,6 +1,9 @@
 package com.revature.spring_boot.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,8 +21,13 @@ public class Actor {
     @Column(name = "actor_id", nullable = false)
     private int actorId;
 
-    //instantiate movie actors
-    //manytomany
+    @ManyToMany
+    @JoinTable(
+            name = "Actor",
+            joinColumns ={ @JoinColumn(name = "actor_id")},
+            inverseJoinColumns = @JoinColumn(name = "actor")
+    )
+    private List<MovieActor> movieActorList;
 
     @Column(name = "first_name")
     private String firstName;
