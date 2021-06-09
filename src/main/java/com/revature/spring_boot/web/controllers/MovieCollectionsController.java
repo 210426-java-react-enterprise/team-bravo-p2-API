@@ -4,10 +4,12 @@ import com.revature.spring_boot.models.MovieCollections;
 import com.revature.spring_boot.repos.MovieCollectionsRepository;
 import com.revature.spring_boot.services.MovieCollectionService;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
+import io.swagger.annotations.ApiResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static javax.print.attribute.standard.ReferenceUriSchemesSupported.HTTP;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
@@ -58,9 +61,24 @@ public class MovieCollectionsController {
     }
 
 
-    // TODO: This will need some testing...
-    @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/update")
-    public ResponseEntity<String> updateMovieCollections(@RequestBody MovieCollections movieRequest) {
-        return movieCollectionService.updateMovieCollection(movieRequest);
+//    // TODO: This will need some testing...
+//    @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/update")
+//    public ResponseEntity<String> updateMovieCollections(@RequestBody MovieCollections movieRequest) {
+//        return movieCollectionService.updateMovieCollection(movieRequest);
+//    }
+
+    @PutMapping(produces = APPLICATION_JSON_VALUE, value = "/update/{movieCollectionsId}")
+    public MovieCollectionsDTO updateMovieCollectionById(@PathVariable(value= "movieCollectionsId") int movieCollectionsId,
+                                                                      @RequestBody MovieCollections movieCollect){
+       MovieCollectionsDTO updatedMovCollDTO = new MovieCollectionsDTO(movieCollectionService.updateMovieCollectionById(movieCollectionsId, movieCollect));
+       return  updatedMovCollDTO;
+    }
+
+
+    @DeleteMapping(value = "/delete/{movieCollectionsId}")
+    public void deleteMovieCollection(@PathVariable(value = "movieCollectionsId") int movieCollectionsId) {
+
+        movieCollectionService.deleteCollectionById((movieCollectionsId));
+
     }
 }
