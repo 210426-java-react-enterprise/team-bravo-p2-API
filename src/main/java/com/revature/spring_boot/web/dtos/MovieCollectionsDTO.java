@@ -49,6 +49,9 @@ public class MovieCollectionsDTO {
         this.userDescrip = movieCollect.getUserComment();
     }
 
+
+
+
     public int getId() {
         return id;
     }
