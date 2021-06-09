@@ -4,9 +4,6 @@ package com.revature.spring_boot.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
-
-
-public class MovieDirector {
   /*
  * Description: {To be a part of a list of directors (which will have it's own table,
  * with a foreign key referencing this table).}

@@ -56,7 +56,7 @@ public class MovieCollectionService {
     }
 
 
-
+    @Transactional(propagation = Propagation.SUPPORTS)
     public MovieCollections updateMovieCollectionById(int movieCollectionsId, MovieCollections movieCollect) {
 
     if(collectionInfoRepo.findById(movieCollectionsId).isPresent()) {
@@ -92,7 +92,7 @@ public class MovieCollectionService {
 //
 //    }
 
-
+    @Transactional(propagation = Propagation.SUPPORTS)
     public void deleteCollectionById(int movieCollectionsId) {
         MovieCollections existingItem = collectionInfoRepo.findById(movieCollectionsId)
                 .orElseThrow(() -> new ResourceNotFoundException());
