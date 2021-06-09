@@ -1,4 +1,4 @@
-package com.revature.spring_boot.jwt;
+package com.revature.spring_boot.web.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
