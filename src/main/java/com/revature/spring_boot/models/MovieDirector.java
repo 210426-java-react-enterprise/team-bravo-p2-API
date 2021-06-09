@@ -1,13 +1,13 @@
 package com.revature.spring_boot.models;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jbialon
- * Date: 6/7/2021
- * Time: 6:48 PM
+
+
+public class MovieDirector {
+  /*
  * Description: {To be a part of a list of directors (which will have it's own table,
  * with a foreign key referencing this table).}
  */
