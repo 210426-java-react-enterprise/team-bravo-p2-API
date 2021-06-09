@@ -1,4 +1,4 @@
-package com.revature.spring_boot.jwt;
+package com.revature.spring_boot.web.security;
 
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;

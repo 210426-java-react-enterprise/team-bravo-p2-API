@@ -20,9 +20,9 @@ public class CollectionInfo {
     private int collectionInfoId;
 
     //FK
-    @NotNull
-    @Column(name="acct_id",nullable = false)
-     private int acctId;
+    @ManyToOne
+    @JoinColumn(name = "acct_id", nullable = false)
+    private Account acctId;
 
     @NotNull
     @Column(name = "coll_name", nullable = false)
@@ -35,7 +35,7 @@ public class CollectionInfo {
     @JsonIgnore
     private List<MovieCollections> movieCollectionsSet;
 
-    @ManyToOne//(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "type_id", nullable = false, referencedColumnName = "coll_type_id")
     private CollectionType collectionType;
 
@@ -63,11 +63,11 @@ public class CollectionInfo {
         this.collectionInfoId = collectionInfoId;
     }
 
-    public int getAcctId() {
+    public Account getAcctId() {
         return acctId;
     }
 
-    public void setAcctId(int acctId) {
+    public void setAcctId(Account acctId) {
         this.acctId = acctId;
     }
 
