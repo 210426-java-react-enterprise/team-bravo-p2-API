@@ -44,20 +44,6 @@ public class MovieCollectionsController {
         return movieCollectionsRepo.findById(movieCollectionsId);
     }
 
-//    @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/update")
-//    public ResponseEntity<String> updateMovieCollections(@RequestBody MovieCollections movieRequest) {
-//        Optional<MovieCollections> movieCollections = movieCollectionsRepo.findById(movieRequest.getMovieId());
-//            if(movieCollections.isPresent()) {
-//                movieCollections.get().setUserRating(movieRequest.getUserRating());
-//                movieCollections.get().setTradeable(movieRequest.getTradeable());
-//                movieCollections.get().setUserComment(movieRequest.getUserComment());
-//                movieCollections.get().setWatched(movieRequest.getWatched());
-//                movieCollectionsRepo.save(movieCollections.get());
-//                return new ResponseEntity<String>("Your collection has been updated successfully", HttpStatus.OK);
-//            }
-//
-//            return new ResponseEntity<String>("Sorry, we cannot find that collection item"+ movieRequest.getMovieId(), HttpStatus.BAD_REQUEST);
-//    }
 
 
     @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/update")
@@ -90,8 +76,6 @@ public class MovieCollectionsController {
         }
     }
 }
-
-
 
 
 //    public ResponseEntity<String> deleteMovieCollections(@PathVariable int movieId){
