@@ -15,8 +15,8 @@ public class MovieCollectionsDTO {
 
     private int id;
 
-    @NotEmpty
-    private CollectionInfoDTO collectionInfo;
+    //@NotEmpty
+    //private CollectionInfoDTO collectionInfo;
 
     @NotEmpty
     private MovieDTO movie;
@@ -35,13 +35,13 @@ public class MovieCollectionsDTO {
 
     public MovieCollectionsDTO() {
         super();
-        this.collectionInfo = new CollectionInfoDTO();
+        //this.collectionInfo = new CollectionInfoDTO();
         this.movie = new MovieDTO();
     }
 
     public MovieCollectionsDTO(MovieCollections movieCollect) {
         this.id = movieCollect.getCollItemId();
-        this.collectionInfo = new CollectionInfoDTO(movieCollect.getCollectionInfo());
+        //this.collectionInfo = new CollectionInfoDTO(movieCollect.getCollectionInfo());
         this.movie = new MovieDTO(movieCollect.getMovies());
         this.owned = movieCollect.getOwned();
         this.watched = movieCollect.getWatched();
@@ -97,13 +97,13 @@ public class MovieCollectionsDTO {
         this.userDescrip = userDescrip;
     }
 
-    public CollectionInfoDTO getCollectionInfo() {
-        return collectionInfo;
-    }
+    //public CollectionInfoDTO getCollectionInfo() {
+    //    return collectionInfo;
+    //}
 
-    public void setCollectionInfo(CollectionInfoDTO collectionInfo) {
-        this.collectionInfo = collectionInfo;
-    }
+    // void setCollectionInfo(CollectionInfoDTO collectionInfo) {
+    //    this.collectionInfo = collectionInfo;
+    //}
 
     public MovieDTO getMovie() {
         return movie;

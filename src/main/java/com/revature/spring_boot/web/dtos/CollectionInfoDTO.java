@@ -3,6 +3,9 @@ package com.revature.spring_boot.web.dtos;
 import com.revature.spring_boot.models.CollectionInfo;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,10 +30,13 @@ public class CollectionInfoDTO {
     @NotEmpty
     private String collectionDescrip;
 
+    private List<MovieCollectionsDTO> movieCollections;
+
     public CollectionInfoDTO() {
         super();
         this.account = new AccountDTO();
         this.collType = new CollectionTypeDTO();
+        this.movieCollections = new ArrayList<>();
     }
 
     public CollectionInfoDTO(CollectionInfo collInfo) {
@@ -39,6 +45,7 @@ public class CollectionInfoDTO {
         this.collType = new CollectionTypeDTO(collInfo.getCollectionType());
         this.collectionName = collInfo.getCollectionName();
         this.collectionDescrip = collInfo.getDescription();
+        this.movieCollections = collInfo.getMovieCollectionsSet().stream().map(MovieCollectionsDTO::new).collect(Collectors.toList());
     }
 
     public int getId() {
@@ -79,5 +86,13 @@ public class CollectionInfoDTO {
 
     public void setCollType(CollectionTypeDTO collType) {
         this.collType = collType;
+    }
+
+    public List<MovieCollectionsDTO> getMovieCollections() {
+        return movieCollections;
+    }
+
+    public void setMovieCollections(List<MovieCollectionsDTO> movieCollections) {
+        this.movieCollections = movieCollections;
     }
 }

@@ -4,6 +4,9 @@ import com.revature.spring_boot.models.Account;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by IntelliJ IDEA.
@@ -55,6 +58,8 @@ public class AccountDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 
     @Override
     public String toString() {
