@@ -36,5 +36,12 @@ public class MovieActor {
     @ManyToMany(mappedBy = "movieActorList")
     private List<Actor> actorList;
 
+    public int getMovieActorId() {
+        return movieActorId;
+    }
+
+    public void setMovieActorId(int movieActorId) {
+        this.movieActorId = movieActorId;
+    }
 
 }
