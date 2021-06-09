@@ -1,4 +1,4 @@
-package com.revature.spring_boot.jwt;
+package com.revature.spring_boot.web.security;
 
 import com.revature.spring_boot.models.Account;
 import io.jsonwebtoken.JwtBuilder;

@@ -1,4 +1,4 @@
-package com.revature.spring_boot.controllers;
+package com.revature.spring_boot.web.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
