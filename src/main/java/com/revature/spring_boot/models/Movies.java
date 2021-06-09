@@ -46,17 +46,13 @@ public class Movies {
 
     @JsonIgnore
     @OneToMany(mappedBy = "movies")
-    private Set<MovieCollections> movieCollectionSet;
+    private List<MovieCollections> movieCollectionSet;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "movies", fetch = FetchType.LAZY)
-    private List<MovieActor> movieActorList;
-
-    public Set<MovieCollections> getMovieCollectionSet() {
+    public List<MovieCollections> getMovieCollectionSet() {
         return movieCollectionSet;
     }
 
-    public void setMovieCollectionSet(Set<MovieCollections> movieCollectionSet) {
+    public void setMovieCollectionSet(List<MovieCollections> movieCollectionSet) {
         this.movieCollectionSet = movieCollectionSet;
     }
 

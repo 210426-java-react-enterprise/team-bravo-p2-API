@@ -2,9 +2,12 @@ package com.revature.spring_boot.models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -27,6 +30,10 @@ public class Account {
     @NotNull
     @Column(nullable = false)
     private String password;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "acctId")
+    private List<CollectionInfo> userCollections;
 
     public Account(String email, String username, String password) {
         this.email = email;
@@ -68,5 +75,13 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<CollectionInfo> getUserCollections() {
+        return userCollections;
+    }
+
+    public void setUserCollections(List<CollectionInfo> userCollections) {
+        this.userCollections = userCollections;
     }
 }

@@ -2,6 +2,7 @@ package com.revature.spring_boot.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,11 +23,8 @@ public class CollectionType {
     private String mediumType;
 
     @JsonIgnore
-    @OneToMany(mappedBy="collectionType", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="collectionType"/*, fetch = FetchType.LAZY*/)
     private List<CollectionInfo> collectionInfoSet;
-
-//    cascade = CascadeType.ALL
-//    @JoinColumn(name = "coll_type_id", referencedColumnName = "type_id", insertable = false, updatable = false)
 
     public List<CollectionInfo> getCollectionInfoSet() {
         return collectionInfoSet;

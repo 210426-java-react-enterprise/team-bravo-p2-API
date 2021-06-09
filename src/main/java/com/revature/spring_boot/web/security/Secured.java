@@ -1,4 +1,4 @@
-package com.revature.spring_boot.jwt;
+package com.revature.spring_boot.web.security;
 
 import java.lang.annotation.*;
 
