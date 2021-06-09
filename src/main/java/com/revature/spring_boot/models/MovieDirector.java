@@ -1,55 +1,38 @@
 package com.revature.spring_boot.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
-
-
-public class MovieDirector {
-  /*
- * Description: {To be a part of a list of directors (which will have it's own table,
- * with a foreign key referencing this table).}
- */
 @Entity
-@Table(name = "directors")
+@Table(name = "movie_directors")
 public class MovieDirector {
 
     @Id
-    @Column(name = "director_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;//primary key
+    @Column(name = "md_key", nullable = false)
+    private int movieDirectorId;
 
-    @NotEmpty
-    @Column(name = "first_name")
-    private String firstName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie", nullable = false)
+    private Movies movies;
 
-    @NotEmpty
-    @Column(name = "last_name")
-    private String lastName;
+    @JoinTable(
+            name = "movieDirector",
+            joinColumns = @JoinColumn(name = "director"),
+            inverseJoinColumns = @JoinColumn(name = "director_id")
+    )
 
-    public int getId() {
-        return id;
+    @ManyToMany(mappedBy = "movieDirectorList")
+    private List<Director> directorList;
+
+
+    public int getMovieDirectorId() {
+        return movieDirectorId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMovieDirectorId(int movieDirectorId) {
+        this.movieDirectorId = movieDirectorId;
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
 }
