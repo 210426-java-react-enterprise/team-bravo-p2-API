@@ -38,4 +38,27 @@ public class MovieController {
         movieService.addMovie(movie);
     }
 
+
+    //TODO: make this more efficient
+    @DeleteMapping(consumes = APPLICATION_JSON_VALUE, value = "/delete")
+    public void deleteMovieById(@RequestBody Movies movie){
+
+        //first, get the id (which is set to 0 by default)
+        List<MovieDTO> dbMovies = getAllMovies();
+
+        for(MovieDTO m : dbMovies){
+            if(m.getTitle().equals(movie.getTitle())){
+                movie.setMovieId(m.getId());
+                break;
+            }
+        }
+
+        //now that id isn't 0, do deletion
+        if(movieService.deleteMovieById(movie)){//confirms id is valid
+            logger.info("Movie " + movie.getTitle() + " successfully deleted!");
+        }else{
+            logger.warn("Invalid Id " + movie.getMovieId() + "!  Cancelling deletion!");
+        }
+    }
+
 }

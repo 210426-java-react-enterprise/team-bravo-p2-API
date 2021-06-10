@@ -13,6 +13,7 @@ import javax.validation.constraints.NotEmpty;
  */
 public class MovieDTO {
 
+    @NotEmpty
     private int id;
 
     @NotEmpty

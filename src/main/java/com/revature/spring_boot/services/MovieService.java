@@ -30,4 +30,15 @@ public class MovieService {
         movieRepository.save(movie);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    public boolean deleteMovieById(Movies movie){
+
+        if(movie.getMovieId() < 1){
+            return false;
+        }
+
+        movieRepository.deleteById(movie.getMovieId());
+        return true;
+    }
+
 }
