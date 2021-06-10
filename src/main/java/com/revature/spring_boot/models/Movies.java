@@ -48,6 +48,14 @@ public class Movies {
     @OneToMany(mappedBy = "movies")
     private List<MovieCollections> movieCollectionSet;
 
+    @ManyToMany(targetEntity = Actor.class)
+    @JoinTable(
+            name = "movie_actors",
+            joinColumns ={ @JoinColumn(name = "movie")},
+            inverseJoinColumns = @JoinColumn(name = "actor")
+    )
+    private List<Actor> actorList;
+
     public List<MovieCollections> getMovieCollectionSet() {
         return movieCollectionSet;
     }
@@ -118,5 +126,13 @@ public class Movies {
 
     public void setProdCompany(String prodCompany) {
         this.prodCompany = prodCompany;
+    }
+
+    public List<Actor> getActorList() {
+        return actorList;
+    }
+
+    public void setActorList(List<Actor> actorList) {
+        this.actorList = actorList;
     }
 }
