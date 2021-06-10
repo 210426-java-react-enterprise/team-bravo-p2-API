@@ -2,6 +2,7 @@ package com.revature.spring_boot.services;
 
 import com.revature.spring_boot.models.CollectionInfo;
 
+import com.revature.spring_boot.models.CollectionType;
 import com.revature.spring_boot.repos.CollectionInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ public class CollectionInfoService {
     public List<CollectionInfo> getAllCollectionInfo() {
         return collectionInfoRepo.findAll();
     }
+
 
 
 }
