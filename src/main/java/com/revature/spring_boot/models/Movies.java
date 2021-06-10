@@ -48,6 +48,14 @@ public class Movies {
     @OneToMany(mappedBy = "movies")
     private List<MovieCollections> movieCollectionSet;
 
+    @ManyToMany(targetEntity = Director.class)
+    @JoinTable(
+            name = "movie_directors",
+            joinColumns = @JoinColumn(name = "movie"),
+            inverseJoinColumns = @JoinColumn(name = "director")
+    )
+    private List<Director> directorList;
+
     @ManyToMany(targetEntity = Actor.class)
     @JoinTable(
             name = "movie_actors",
