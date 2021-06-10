@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping("/collection/type")
+@RequestMapping("/collectionType")
 public class CollectionTypeController {
 
     private Logger logger = LoggerFactory.getLogger(CollectionType.class);
@@ -36,8 +36,10 @@ public class CollectionTypeController {
     public List<CollectionTypeDTO> getAllCollectionTypes() {
         List<CollectionTypeDTO> collectionTypes = collectionTypeService.getAllCollectionTypes()
                 .stream()
-                .map(type -> new CollectionTypeDTO())
+                .map(type -> new CollectionTypeDTO(type))
                 .collect(Collectors.toList());
+
+        System.out.println(collectionTypes.toString());
 
         return collectionTypes;
     }
