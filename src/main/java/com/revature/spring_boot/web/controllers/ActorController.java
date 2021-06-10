@@ -1,7 +1,9 @@
 package com.revature.spring_boot.web.controllers;
 
 import com.revature.spring_boot.models.CollectionType;
+import com.revature.spring_boot.services.ActorService;
 import com.revature.spring_boot.services.CollectionInfoService;
+import com.revature.spring_boot.web.dtos.ActorDTO;
 import com.revature.spring_boot.web.dtos.CollectionInfoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,27 +17,35 @@ import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@RestController
-@RequestMapping("/collection")
-public class CollectionInfoController {
+/**
+ * Created by IntelliJ IDEA.
+ * User: Jbialon
+ * Date: 6/10/2021
+ * Time: 8:44 AM
+ * Description: {Insert Description}
+ */
 
-    private Logger logger = LoggerFactory.getLogger(CollectionInfoController.class);
-    private CollectionInfoService collectionInfoService;
+@RestController
+@RequestMapping("/actors")
+public class ActorController {
+
+    private Logger logger = LoggerFactory.getLogger(ActorController.class);
+    private ActorService actorService;
 
     @Autowired
-    public CollectionInfoController(CollectionInfoService collectionInfoService){
-        this.collectionInfoService = collectionInfoService;
+    public ActorController(ActorService actorService){
+        this.actorService = actorService;
     }
 
     @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
-    public List<CollectionInfoDTO> getAllCollections() {
+    public List<ActorDTO> getAllCollections() {
 
-        List<CollectionInfoDTO> collectionsInfo = collectionInfoService.getAllCollectionInfo()
+        List<ActorDTO> actors = actorService.getAllActors()
                 .stream()
-                .map(CollectionInfoDTO::new)
+                .map(ActorDTO::new)
                 .collect(Collectors.toList());
 
-        return collectionsInfo;
+        return actors;
     }
 
 }
