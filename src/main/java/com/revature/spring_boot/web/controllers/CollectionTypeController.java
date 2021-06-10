@@ -40,6 +40,5 @@ public class CollectionTypeController {
                 .collect(Collectors.toList());
 
         return collectionTypes;
-
     }
 }
