@@ -25,19 +25,19 @@ public class DirectorDTO {
     private String lastName;
 
     @NotEmpty
-    private List<MovieDirectorDTO> movieDirectorDTOList;
+    private List<MovieDTO> movieDTOList;
 
     public DirectorDTO(){
         super();
-        movieDirectorDTOList = new ArrayList<>();
+        movieDTOList = new ArrayList<>();
     }
 
     public DirectorDTO(Director director){
         this.id = director.getId();
         this.firstName = director.getFirstName();
         this.lastName = director.getLastName();
-        this.movieDirectorDTOList = director.getMovieDirectorList().stream()
-                .map(MovieDirectorDTO::new)
+        this.movieDTOList = director.getMovieDirectorList().stream()
+                .map(MovieDTO::new)
                 .collect(Collectors.toList());
     }
 
@@ -63,6 +63,14 @@ public class DirectorDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<MovieDTO> getMovieDTOList() {
+        return movieDTOList;
+    }
+
+    public void setMovieDTOList(List<MovieDTO> movieDTOList) {
+        this.movieDTOList = movieDTOList;
     }
 
     @Override

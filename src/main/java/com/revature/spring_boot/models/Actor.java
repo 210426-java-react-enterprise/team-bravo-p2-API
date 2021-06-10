@@ -21,14 +21,6 @@ public class Actor {
     @Column(name = "actor_id", nullable = false)
     private int actorId;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Actor",
-            joinColumns ={ @JoinColumn(name = "actor_id")},
-            inverseJoinColumns = @JoinColumn(name = "actor")
-    )
-    private List<MovieActor> movieActorList;
-
     @Column(name = "first_name")
     private String firstName;
 

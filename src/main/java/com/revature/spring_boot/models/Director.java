@@ -21,12 +21,11 @@ public class Director {
 
     @ManyToMany
     @JoinTable(
-            name = "Director",
-            joinColumns = {@JoinColumn(name = "director_id")},
-            inverseJoinColumns = @JoinColumn(name = "director")
+            name = "movie_directors",
+            joinColumns = {@JoinColumn(name = "director")},
+            inverseJoinColumns = @JoinColumn(name = "movie")
     )
-
-    private List<MovieDirector> movieDirectorList;
+    private List<Movies> movieList;
 
     @NotEmpty
     @Column(name = "first_name")
@@ -60,11 +59,11 @@ public class Director {
         this.lastName = lastName;
     }
 
-    public List<MovieDirector> getMovieDirectorList() {
-        return movieDirectorList;
+    public List<Movies> getMovieDirectorList() {
+        return movieList;
     }
 
-    public void setMovieDirectorList(List<MovieDirector> movieDirectorList) {
-        this.movieDirectorList = movieDirectorList;
+    public void setMovieDirectorList(List<Movies> movieDirectorList) {
+        this.movieList = movieDirectorList;
     }
 }
