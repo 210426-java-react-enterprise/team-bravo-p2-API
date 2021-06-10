@@ -17,9 +17,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("/collection")
 public class CollectionInfoController {
+    
+    private Logger logger = LoggerFactory.getLogger(CollectionInfoController.class);
 
-    //Should the logger utilize the CollectionInto class here?
-    private Logger logger = LoggerFactory.getLogger(CollectionType.class);
     private CollectionInfoService collectionInfoService;
 
     @Autowired
