@@ -60,4 +60,11 @@ public class Director {
         this.lastName = lastName;
     }
 
+    public List<MovieDirector> getMovieDirectorList() {
+        return movieDirectorList;
+    }
+
+    public void setMovieDirectorList(List<MovieDirector> movieDirectorList) {
+        this.movieDirectorList = movieDirectorList;
+    }
 }

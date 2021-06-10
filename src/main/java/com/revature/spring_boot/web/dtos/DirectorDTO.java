@@ -3,6 +3,9 @@ package com.revature.spring_boot.web.dtos;
 import com.revature.spring_boot.models.Director;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,12 +24,21 @@ public class DirectorDTO {
     @NotEmpty
     private String lastName;
 
-    public DirectorDTO(){super();}
+    @NotEmpty
+    private List<MovieDirectorDTO> movieDirectorDTOList;
+
+    public DirectorDTO(){
+        super();
+        movieDirectorDTOList = new ArrayList<>();
+    }
 
     public DirectorDTO(Director director){
         this.id = director.getId();
         this.firstName = director.getFirstName();
         this.lastName = director.getLastName();
+        this.movieDirectorDTOList = director.getMovieDirectorList().stream()
+                .map(MovieDirectorDTO::new)
+                .collect(Collectors.toList());
     }
 
     public int getId() {

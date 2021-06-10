@@ -14,9 +14,9 @@ public class MovieDirector {
     @Column(name = "md_key", nullable = false)
     private int movieDirectorId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie", nullable = false)
-    private Movies movies;
+    private List<Movies> movies;
 
     @JoinTable(
             name = "movieDirector",
@@ -34,5 +34,21 @@ public class MovieDirector {
 
     public void setMovieDirectorId(int movieDirectorId) {
         this.movieDirectorId = movieDirectorId;
+    }
+
+    public List<Movies> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movies> movies) {
+        this.movies = movies;
+    }
+
+    public List<Director> getDirectorList() {
+        return directorList;
+    }
+
+    public void setDirectorList(List<Director> directorList) {
+        this.directorList = directorList;
     }
 }
