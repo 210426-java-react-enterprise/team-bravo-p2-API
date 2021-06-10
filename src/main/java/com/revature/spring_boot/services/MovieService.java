@@ -25,4 +25,9 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void addMovie(Movies movie){
+        movieRepository.save(movie);
+    }
+
 }
