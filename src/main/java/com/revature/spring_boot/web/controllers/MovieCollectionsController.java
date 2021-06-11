@@ -40,6 +40,8 @@ public class MovieCollectionsController {
         this.movieCollectionService = movieCollectionService;
     }
 
+    //POSTMAPPING HERE
+
     @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
     public List<MovieCollectionsDTO> getAllMovieCollections() {
 
