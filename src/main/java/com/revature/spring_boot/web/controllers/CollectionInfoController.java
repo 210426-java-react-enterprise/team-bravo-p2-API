@@ -6,14 +6,16 @@ import com.revature.spring_boot.models.CollectionType;
 import com.revature.spring_boot.repos.CollectionInfoRepository;
 import com.revature.spring_boot.services.CollectionInfoService;
 import com.revature.spring_boot.web.dtos.CollectionInfoDTO;
+<<<<<<< HEAD
 import com.revature.spring_boot.web.security.JwtConfig;
 import com.revature.spring_boot.web.security.TokenParser;
+=======
+import com.revature.spring_boot.web.dtos.CollectionTypeDTO;
+>>>>>>> origin/dev
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -24,8 +26,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("/collection")
 public class CollectionInfoController {
+    
+    private Logger logger = LoggerFactory.getLogger(CollectionInfoController.class);
 
-    private Logger logger = LoggerFactory.getLogger(CollectionType.class);
     private CollectionInfoService collectionInfoService;
     private TokenParser tokenParser;
     private CollectionInfoRepository collectionInfoRepository;
