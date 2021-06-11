@@ -86,4 +86,16 @@ public class CollectionInfo {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "CollectionInfo{" +
+                "collectionInfoId=" + collectionInfoId +
+                ", acctId=" + acctId +
+                ", collectionName='" + collectionName + '\'' +
+                ", description='" + description + '\'' +
+                ", movieCollectionsSet=" + movieCollectionsSet +
+                ", collectionType=" + collectionType +
+                '}';
+    }
 }

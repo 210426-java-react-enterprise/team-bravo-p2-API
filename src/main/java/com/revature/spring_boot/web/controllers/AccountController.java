@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -49,7 +50,10 @@ public class AccountController {
         Account account = accountService.authenticate(creds.getUsername(), creds.getPassword());
         String jwt = tokenGenerator.createJwt(account);
         resp.setHeader(jwtConfig.getHeader(), jwt);
+
         return new AccountDTO(account);
+
+
     }
 
     @PostMapping(value="/register", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
@@ -60,6 +64,8 @@ public class AccountController {
         map.put("User", user);
         map.put("Account", account);
         return map;
+
+
     }
 
 
