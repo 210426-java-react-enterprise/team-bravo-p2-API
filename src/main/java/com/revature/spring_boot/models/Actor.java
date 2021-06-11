@@ -1,3 +1,4 @@
+
 package com.revature.spring_boot.models;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.List;
  *
  */
 
+
 @Entity
 @Table(name = "actors")
 public class Actor {
@@ -21,13 +23,13 @@ public class Actor {
     @Column(name = "actor_id", nullable = false)
     private int actorId;
 
-    @ManyToMany
+    @ManyToMany(targetEntity = Movies.class)
     @JoinTable(
-            name = "Actor",
-            joinColumns ={ @JoinColumn(name = "actor_id")},
-            inverseJoinColumns = @JoinColumn(name = "actor")
+            name = "movie_actors",
+            joinColumns ={ @JoinColumn(name = "actor")},
+            inverseJoinColumns = @JoinColumn(name = "movie")
     )
-    private List<MovieActor> movieActorList;
+    private List<Movies> moviesList;
 
     @Column(name = "first_name")
     private String firstName;
@@ -58,4 +60,13 @@ public class Actor {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public List<Movies> getMoviesList() {
+        return moviesList;
+    }
+
+    public void setMoviesList(List<Movies> moviesList) {
+        this.moviesList = moviesList;
+    }
 }
+

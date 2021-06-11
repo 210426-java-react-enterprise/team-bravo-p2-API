@@ -105,4 +105,7 @@ public class MovieCollections {
         this.tradeable = tradeable;
     }
 
+    public Integer getMovieId() {
+        return collItemId;
+    }
 }

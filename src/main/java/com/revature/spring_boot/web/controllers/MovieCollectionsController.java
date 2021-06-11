@@ -4,6 +4,9 @@ import com.revature.spring_boot.models.MovieCollections;
 import com.revature.spring_boot.repos.MovieCollectionsRepository;
 import com.revature.spring_boot.services.MovieCollectionService;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
+import com.revature.spring_boot.web.security.TokenParser;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import io.swagger.annotations.ApiResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -34,17 +38,18 @@ public class MovieCollectionsController {
 
     private Logger logger = LoggerFactory.getLogger(MovieCollectionsController.class);
     private MovieCollectionService movieCollectionService;
+    private TokenParser tokenParser;
 
     @Autowired
-    public MovieCollectionsController(MovieCollectionService movieCollectionService) {
+    public MovieCollectionsController(MovieCollectionService movieCollectionService, TokenParser tokenParser) {
         this.movieCollectionService = movieCollectionService;
+        this.tokenParser = tokenParser;
     }
 
     //POSTMAPPING HERE
 
     @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
     public List<MovieCollectionsDTO> getAllMovieCollections() {
-
         List<MovieCollectionsDTO> movieCollections = movieCollectionService.getAllMovieCollections()
                 .stream()
                 .map(MovieCollectionsDTO::new)
@@ -54,9 +59,8 @@ public class MovieCollectionsController {
 
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get/{movieCollectionsId}")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getByID")
     public MovieCollectionsDTO getMovieCollectionsById(@PathVariable int movieCollectionsId) {
-
         MovieCollectionsDTO movCollDTO = new MovieCollectionsDTO(movieCollectionService.getMovieCollectionsById(movieCollectionsId));
 
         return movCollDTO;
