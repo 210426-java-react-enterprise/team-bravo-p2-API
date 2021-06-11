@@ -4,6 +4,7 @@ import com.revature.spring_boot.models.CollectionInfo;
 
 import com.revature.spring_boot.models.CollectionType;
 import com.revature.spring_boot.repos.CollectionInfoRepository;
+import com.revature.spring_boot.web.dtos.CollectionInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -34,6 +35,26 @@ public class CollectionInfoService {
     public List<CollectionInfo> getAllCollectionInfo() {
         return collectionInfoRepo.findAll();
     }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public CollectionInfo saveCollectionInfo(CollectionInfo collectionInfo){return collectionInfoRepo.save(collectionInfo);}
+
+//    @Transactional(propagation = Propagation.REQUIRED)
+//    public AppUser register(AppUser newUser) throws InvalidRequestException, ResourcePersistenceException {
+//
+//        isUserValid(newUser);
+//
+//        if (isUsernameAvailable(newUser.getUsername())) {
+//            throw new ResourcePersistenceException("Provided username is already taken!");
+//        }
+//
+//        if (isEmailAvailable(newUser.getEmail())) {
+//            throw new ResourcePersistenceException("Provided email is already taken!");
+//        }
+//
+//        newUser.setRole(AppUser.Role.BASIC_USER);
+//        return userRepo.save(newUser);
+//    }
 
 
 
