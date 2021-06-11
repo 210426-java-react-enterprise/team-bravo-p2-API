@@ -26,8 +26,8 @@ public class MovieService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public void addMovie(Movies movie){
-        movieRepository.save(movie);
+    public Movies addMovie(Movies movie){
+        return movieRepository.save(movie);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
