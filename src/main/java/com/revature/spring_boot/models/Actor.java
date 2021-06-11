@@ -14,6 +14,7 @@ import java.util.List;
  *
  */
 
+
 @Entity
 @Table(name = "actors")
 public class Actor {
@@ -68,3 +69,4 @@ public class Actor {
         this.moviesList = moviesList;
     }
 }
+
