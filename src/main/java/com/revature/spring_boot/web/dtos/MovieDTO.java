@@ -51,6 +51,16 @@ public class MovieDTO {
         this.prodCompany = movie.getProdCompany();
     }
 
+    public MovieDTO(OmdbMovieDTO movie) {
+        this.title = movie.getTitle();
+        this.year = movie.getYear();
+        this.mpaaRating = movie.getMpaaRating();
+        this.lengthMin = movie.getLengthMin();
+        this.genre = movie.getGenre();
+        this.description = movie.getDescription();
+        this.prodCompany = movie.getProdCompany();
+    }
+
     public int getId() {
         return id;
     }

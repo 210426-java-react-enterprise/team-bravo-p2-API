@@ -1,6 +1,7 @@
 package com.revature.spring_boot.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -42,6 +43,7 @@ public class Movies {
 
     @NotNull
     @Column(name = "prod_company", nullable = false)
+    @JsonProperty("Production")
     private String prodCompany;
 
     @JsonIgnore
