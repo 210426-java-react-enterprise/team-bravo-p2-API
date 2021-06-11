@@ -1,5 +1,7 @@
 package com.revature.spring_boot.web.dtos;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.revature.spring_boot.models.CollectionInfo;
 
 import javax.validation.constraints.NotEmpty;
@@ -18,15 +20,19 @@ public class CollectionInfoDTO {
 
     private int id;
 
+    @JsonProperty("account")
     @NotEmpty
     private AccountDTO account;
 
+    @JsonProperty("collType")
     @NotEmpty
     private CollectionTypeDTO collType;
 
+    @JsonProperty("collectionName")
     @NotEmpty
     private String collectionName;
 
+    @JsonProperty("collectionDescrip")
     @NotEmpty
     private String collectionDescrip;
 

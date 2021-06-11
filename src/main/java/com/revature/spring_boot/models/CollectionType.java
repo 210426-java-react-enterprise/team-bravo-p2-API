@@ -3,6 +3,7 @@ package com.revature.spring_boot.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.revature.spring_boot.web.dtos.CollectionTypeDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,6 +29,11 @@ public class CollectionType {
 
     public List<CollectionInfo> getCollectionInfoSet() {
         return collectionInfoSet;
+    }
+
+    public CollectionType(CollectionTypeDTO collectionTypeDTO){
+        this.id = collectionTypeDTO.getId();
+        this.mediumType = collectionTypeDTO.getMediumType();
     }
 
     public void setCollectionInfoSet(List<CollectionInfo> collectionInfoSet) {

@@ -4,6 +4,7 @@ package com.revature.spring_boot.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.revature.spring_boot.web.dtos.CollectionInfoDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -47,6 +48,17 @@ public class CollectionInfo {
         this.movieCollectionsSet = movieCollectionsSet;
     }
 
+    public CollectionInfo(){};
+
+    public CollectionInfo(CollectionInfoDTO collectionInfoDTO){
+        this.collectionName = collectionInfoDTO.getCollectionName();
+        this.acctId = new Account(collectionInfoDTO.getAccount());
+        this.collectionName = collectionInfoDTO.getCollectionName();
+        this.description = collectionInfoDTO.getCollectionDescrip();
+        this.collectionType = new CollectionType(collectionInfoDTO.getCollType());
+    };
+
+
     public CollectionType getCollectionType() {
         return collectionType;
     }
@@ -85,5 +97,17 @@ public class CollectionInfo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "CollectionInfo{" +
+                "collectionInfoId=" + collectionInfoId +
+                ", acctId=" + acctId +
+                ", collectionName='" + collectionName + '\'' +
+                ", description='" + description + '\'' +
+                ", movieCollectionsSet=" + movieCollectionsSet +
+                ", collectionType=" + collectionType +
+                '}';
     }
 }

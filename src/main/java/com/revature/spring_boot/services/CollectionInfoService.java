@@ -5,6 +5,7 @@ import com.revature.spring_boot.models.CollectionInfo;
 import com.revature.spring_boot.models.CollectionType;
 import com.revature.spring_boot.repos.CollectionInfoRepository;
 import com.revature.spring_boot.web.dtos.CollectionInfoDTO;
+import com.revature.spring_boot.web.dtos.CollectionTypeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -37,7 +38,13 @@ public class CollectionInfoService {
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
-    public CollectionInfo saveCollectionInfo(CollectionInfo collectionInfo){return collectionInfoRepo.save(collectionInfo);}
+    public CollectionInfo saveCollectionInfo(CollectionInfoDTO collectionInfo){
+
+        CollectionInfo collectionInfoModel = new CollectionInfo(collectionInfo);
+        collectionInfoRepo.save(collectionInfoModel);
+        return collectionInfoModel;
+    }
+    //map dto to persistent entity
 
 //    @Transactional(propagation = Propagation.REQUIRED)
 //    public AppUser register(AppUser newUser) throws InvalidRequestException, ResourcePersistenceException {
