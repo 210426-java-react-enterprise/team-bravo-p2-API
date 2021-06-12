@@ -31,6 +31,8 @@ public class CollectionType {
         return collectionInfoSet;
     }
 
+    public CollectionType(){super();}
+
     public CollectionType(CollectionTypeDTO collectionTypeDTO){
         this.id = collectionTypeDTO.getId();
         this.mediumType = collectionTypeDTO.getMediumType();
