@@ -65,13 +65,6 @@ public class CollectionInfoController {
         return savedCollectionInfo;
     }
 
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-//    public AppUserDTO registerNewUser(@RequestBody @Valid AppUser newUser, HttpServletResponse resp) {
-//        AppUserDTO registeredUser = new AppUserDTO(userService.register(newUser));
-//        resp.setHeader("Cache-Control", "no-store");
-//        return registeredUser;
-//    }
 
     @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getInfoByID")
     public List<CollectionInfoDTO> getCollectionInfoByID(HttpServletRequest req){

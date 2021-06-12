@@ -18,7 +18,7 @@ public class CollectionTypeDTO {
     private int id;
 
     @JsonProperty("mediumType")
-    @NotEmpty
+   // @NotEmpty
     private String mediumType;
 
     public CollectionTypeDTO() {

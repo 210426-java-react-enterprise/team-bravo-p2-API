@@ -1,6 +1,7 @@
 package com.revature.spring_boot.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
 
@@ -33,16 +34,18 @@ public class MovieCollections {
     @Column(name ="tradeable")
     private int tradeable;
 
-    @ManyToOne()
-    @JoinColumn(name = "collection_info_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "collection_info_id", nullable = false, referencedColumnName = "collection_info_id")
     private CollectionInfo collectionInfo;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_id", nullable = false)
-    private Movies movies;
+    @ManyToOne()
+    @JoinColumn(name = "movie_id", nullable = false, referencedColumnName = "movie_id")
+    private Movies movieId;
 
     public MovieCollections(MovieCollectionsDTO collection) {
-        //this.collItemId = collection.getId();
+        this.collItemId = collection.getId();
+        this.movieId = new Movies(collection.getMovie());
+        this.collectionInfo = new CollectionInfo(collection.getCollectionInfo());
         this.owned = collection.getOwned();
         this.userRating = collection.getUserRating();
         this.userComment = collection.getUserDescrip();
@@ -54,7 +57,6 @@ public class MovieCollections {
 
     }
 
-
     public CollectionInfo getCollectionInfo() {
         return collectionInfo;
     }
@@ -63,12 +65,10 @@ public class MovieCollections {
         this.collectionInfo = collectionInfo;
     }
 
-    public Movies getMovies() {
-        return movies;
-    }
 
-    public void setMovies(Movies movies) {
-        this.movies = movies;
+
+    public void setMovieId(Movies movieId) {
+        this.movieId = movieId;
     }
 
     public int getCollItemId() {
@@ -119,7 +119,25 @@ public class MovieCollections {
         this.tradeable = tradeable;
     }
 
-    public Integer getMovieId() {
+    public int getMovieId() {
         return collItemId;
+    }
+
+    public void setCollItemId(int collItemId) {
+        this.collItemId = collItemId;
+    }
+
+    @Override
+    public String toString() {
+        return "MovieCollections{" +
+                "collItemId=" + collItemId +
+                ", owned=" + owned +
+                ", watched=" + watched +
+                ", userRating=" + userRating +
+                ", userComment='" + userComment + '\'' +
+                ", tradeable=" + tradeable +
+                ", collectionInfo=" + collectionInfo +
+                ", movieId=" + movieId +
+                '}';
     }
 }

@@ -8,6 +8,7 @@ import com.revature.spring_boot.web.dtos.CollectionInfoDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -32,9 +33,11 @@ public class CollectionInfo {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "collectionInfo")
+
     @JsonIgnore
+    @OneToMany(mappedBy = "collectionInfo")
     private List<MovieCollections> movieCollectionsSet;
+
 
     @ManyToOne
     @JoinColumn(name = "type_id", nullable = false, referencedColumnName = "coll_type_id")

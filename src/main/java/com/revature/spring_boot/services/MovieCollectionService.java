@@ -60,7 +60,7 @@ public class MovieCollectionService {
 
 
 //    @Transactional(propagation = Propagation.SUPPORTS)
-//    public MovieCollections updateMovieCollectionById(int movieCollectionsId, MovieCollections movieCollect) {
+//    public MovieCollections updateMovieCollectionById2(int movieCollectionsId, MovieCollections movieCollect) {
 //
 //    if(collectionInfoRepo.findById(movieCollectionsId).isPresent()) {
 //        MovieCollections existingCollectionItem = collectionInfoRepo.findById(movieCollectionsId).get();
@@ -77,28 +77,42 @@ public class MovieCollectionService {
 //        return null;
 //    }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void saveCollection(@Valid MovieCollectionsDTO collection){
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public MovieCollections saveCollection(MovieCollectionsDTO collection){
        MovieCollections saveCollection = new MovieCollections(collection);
        collectionInfoRepo.save(saveCollection);
-    }
 
-//return of Optional may be better, to avoid null pointer exceptions.
-//    public ResponseEntity<String> updateMovieCollections(int movieCollectionsId, MovieCollections movieRequest) {
+    return saveCollection; }
+
+//////return of Optional may be better, to avoid null pointer exceptions.
+//    public ResponseEntity<String> updateMovieCollectionById(int movieCollectionsId, MovieCollections updatedCollection) {
 //
-//        Optional<MovieCollections> movieCollections = collectionInfoRepo.findById(movieRequest.getMovies().getMovieId());
+//        Optional<MovieCollections> movieCollections = collectionInfoRepo.findById(updatedCollection.getMovieId());
 //        if(movieCollections.isPresent()) {
-//            movieCollections.get().setUserRating(movieRequest.getUserRating());
-//            movieCollections.get().setTradeable(movieRequest.getTradeable());
-//            movieCollections.get().setUserComment(movieRequest.getUserComment());
-//            movieCollections.get().setWatched(movieRequest.getWatched());
+//            movieCollections.get().setUserRating(updatedCollection.getUserRating());
+//            movieCollections.get().setTradeable(updatedCollection.getTradeable());
+//            movieCollections.get().setUserComment(updatedCollection.getUserComment());
+//            movieCollections.get().setWatched(updatedCollection.getWatched());
 //            collectionInfoRepo.save(movieCollections.get());
 //            return new ResponseEntity<String>("Your collection has been updated successfully", HttpStatus.OK);
 //        }
 //
-//        return new ResponseEntity<String>("Unfortunately, we cannot find that collection item"+ movieRequest.getMovies().getMovieId(), HttpStatus.BAD_REQUEST);
+//        return new ResponseEntity<String>("Unfortunately, we cannot find that collection item", HttpStatus.BAD_REQUEST);
 //
 //    }
+
+
+    public MovieCollections updateItem(int id, MovieCollectionsDTO movieCollectionUpdate) {
+        MovieCollections updatepost = collectionInfoRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException());
+            updatepost.setUserRating(movieCollectionUpdate.getUserRating());
+            updatepost.setWatched(movieCollectionUpdate.getWatched());
+            updatepost.setOwned(movieCollectionUpdate.getOwned());
+            updatepost.setTradeable(movieCollectionUpdate.getTradeable());
+            updatepost.setUserComment(movieCollectionUpdate.getUserDescrip());
+            return collectionInfoRepo.save(updatepost);
+
+    }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public void deleteCollectionById(int movieCollectionsId) {
@@ -110,5 +124,5 @@ public class MovieCollectionService {
 
 
 
-    }
+}
 

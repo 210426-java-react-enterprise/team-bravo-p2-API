@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
  */
 public class CollectionInfoDTO {
 
+    @JsonProperty("id")
     private int id;
 
     @JsonProperty("account")
@@ -29,11 +30,11 @@ public class CollectionInfoDTO {
     private CollectionTypeDTO collType;
 
     @JsonProperty("collectionName")
-    @NotEmpty
+   // @NotEmpty
     private String collectionName;
 
     @JsonProperty("collectionDescrip")
-    @NotEmpty
+    //@NotEmpty
     private String collectionDescrip;
 
     private List<MovieCollectionsDTO> movieCollections;
@@ -51,6 +52,7 @@ public class CollectionInfoDTO {
         this.collType = new CollectionTypeDTO(collInfo.getCollectionType());
         this.collectionName = collInfo.getCollectionName();
         this.collectionDescrip = collInfo.getDescription();
+
 
         if (collInfo.getMovieCollectionsSet() != null) {
             this.movieCollections = collInfo.getMovieCollectionsSet().stream().map(MovieCollectionsDTO::new).collect(Collectors.toList());

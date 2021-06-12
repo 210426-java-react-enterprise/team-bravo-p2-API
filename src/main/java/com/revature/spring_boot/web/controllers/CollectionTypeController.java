@@ -25,10 +25,6 @@ public class CollectionTypeController {
         this.collectionTypeService = collectionTypeService;
     }
 
-//    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/save")
-//    public CollectionTypeDTO collectionTypeDTO(@RequestBody CollectionTypeDTO collectionTypeDTO) {
-//
-//    }
 
     @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
     public List<CollectionTypeDTO> getAllCollectionTypes() {

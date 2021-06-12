@@ -1,6 +1,9 @@
 package com.revature.spring_boot.web.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.revature.spring_boot.models.Account;
 import com.revature.spring_boot.models.Movies;
+import springfox.documentation.spring.web.json.Json;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -13,27 +16,28 @@ import javax.validation.constraints.NotEmpty;
  */
 public class MovieDTO {
 
+    @JsonProperty("id")
     private int id;
 
-    @NotEmpty
+    //@NotEmpty
     private String title;
 
-    @NotEmpty
+    //@NotEmpty
     private int year;
 
-    @NotEmpty
+    //@NotEmpty
     private String mpaaRating;
 
-    @NotEmpty
+    //@NotEmpty
     private int lengthMin;
 
-    @NotEmpty
+    //@NotEmpty
     private String genre;
 
-    @NotEmpty
+    //@NotEmpty
     private String description;
 
-    @NotEmpty
+    //@NotEmpty
     private String prodCompany;
 
     public MovieDTO() {
@@ -42,13 +46,14 @@ public class MovieDTO {
 
     public MovieDTO(Movies movie) {
         this.id = movie.getMovieId();
-        this.title = movie.getTitle();
-        this.year = movie.getYear();
-        this.mpaaRating = movie.getMpaaRating();
-        this.lengthMin = movie.getLengthMin();
-        this.genre = movie.getGenre();
-        this.description = movie.getDescription();
-        this.prodCompany = movie.getProdCompany();
+
+//        this.title = movie.getTitle();
+//        this.year = movie.getYear();
+//        this.mpaaRating = movie.getMpaaRating();
+//        this.lengthMin = movie.getLengthMin();
+//        this.genre = movie.getGenre();
+//        this.description = movie.getDescription();
+//        this.prodCompany = movie.getProdCompany();
     }
 
     public MovieDTO(OmdbMovieDTO movie) {
@@ -59,6 +64,9 @@ public class MovieDTO {
         this.genre = movie.getGenre();
         this.description = movie.getDescription();
         this.prodCompany = movie.getProdCompany();
+    }
+
+    public MovieDTO(int movieId) {
     }
 
     public int getId() {

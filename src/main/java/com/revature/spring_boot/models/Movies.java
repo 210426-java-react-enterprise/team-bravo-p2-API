@@ -2,6 +2,7 @@ package com.revature.spring_boot.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.revature.spring_boot.web.dtos.MovieDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,37 +18,38 @@ public class Movies {
     @Column(name = "movie_id", nullable = false)
     private int movieId;
 
-    @NotNull
+    //@NotNull
     @Column(name = "title", nullable = false)
     private String title;
 
-    @NotNull
+    //@NotNull
     @Column(name = "year", nullable = false)
     private int year;
 
-    @NotNull
+    //@NotNull
     @Column(name = "mpaa_rating", nullable = false)
     private String mpaaRating;
 
-    @NotNull
+    //@NotNull
     @Column(name = "length_min", nullable = false)
     private int lengthMin;
 
-    @NotNull
+    //@NotNull
     @Column(name = "genre", nullable = false)
     private String genre;
 
-    @NotNull
+    //@NotNull
     @Column(name = "descrip", nullable = false)
     private String description;
 
-    @NotNull
+    //@NotNull
     @Column(name = "prod_company", nullable = false)
     @JsonProperty("Production")
     private String prodCompany;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "movies")
+    @OneToMany(mappedBy = "movieId")
+    //cascadeType ALL
     private List<MovieCollections> movieCollectionSet;
 
     @ManyToMany(targetEntity = Director.class)
@@ -65,6 +67,14 @@ public class Movies {
             inverseJoinColumns = @JoinColumn(name = "actor")
     )
     private List<Actor> actorList;
+
+    public Movies(MovieDTO movie) {
+        this.movieId = movie.getId();
+    }
+
+    public Movies() {
+
+    }
 
     public List<MovieCollections> getMovieCollectionSet() {
         return movieCollectionSet;

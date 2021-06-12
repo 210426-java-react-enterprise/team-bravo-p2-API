@@ -1,9 +1,13 @@
 package com.revature.spring_boot.web.dtos;
 
+import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.revature.spring_boot.models.MovieCollections;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,24 +20,25 @@ public class MovieCollectionsDTO {
 
     private int id;
 
-    //@NotEmpty
-    //private CollectionInfoDTO collectionInfo;
+    @JsonProperty("collInfo")
+    private CollectionInfoDTO collectionInfo;
 
-    @NotEmpty
+    @JsonProperty("movie")
     private MovieDTO movie;
 
-    @NotEmpty
+    @JsonProperty("owned")
     private int owned;
 
-    @NotEmpty
+    @JsonProperty("watched")
     private int watched;
 
-    @Column(name = "user_rating")
+    @JsonProperty("user_rating")
     private int userRating;
 
+    @JsonProperty("tradeable")
     private int tradeable;
 
-    @Column(name="user_comment")
+    @JsonProperty("user_comment")
     private String userDescrip;
 
     public MovieCollectionsDTO() {
@@ -44,16 +49,31 @@ public class MovieCollectionsDTO {
 
     public MovieCollectionsDTO(MovieCollections movieCollect) {
         this.id = movieCollect.getCollItemId();
-        //this.collectionInfo = new CollectionInfoDTO(movieCollect.getCollectionInfo());
-        this.movie = new MovieDTO(movieCollect.getMovies());
+        this.collectionInfo = new CollectionInfoDTO(movieCollect.getCollectionInfo());
+        this.movie = new MovieDTO(movieCollect.getMovieId());
         this.owned = movieCollect.getOwned();
         this.watched = movieCollect.getWatched();
         this.tradeable = movieCollect.getTradeable();
         this.userDescrip = movieCollect.getUserComment();
+
     }
 
 
+    public MovieDTO getMovie() {
+        return movie;
+    }
 
+    public void setMovie(MovieDTO movie) {
+        this.movie = movie;
+    }
+
+    public CollectionInfoDTO getCollectionInfo() {
+        return collectionInfo;
+    }
+
+    public void setCollectionInfo(CollectionInfoDTO collectionInfo) {
+        this.collectionInfo = collectionInfo;
+    }
 
     public int getId() {
         return id;
@@ -111,23 +131,6 @@ public class MovieCollectionsDTO {
     //    this.collectionInfo = collectionInfo;
     //}
 
-    public MovieDTO getMovie() {
-        return movie;
-    }
 
-    public void setMovie(MovieDTO movie) {
-        this.movie = movie;
-    }
 
-    @Override
-    public String toString() {
-        return "MovieCollectionsDTO{" +
-                "id=" + id +
-                ", owned=" + owned +
-                ", watched=" + watched +
-                ", userRating=" + userRating +
-                ", tradeable=" + tradeable +
-                ", userDescrip='" + userDescrip + '\'' +
-                '}';
-    }
 }

@@ -1,29 +1,20 @@
 package com.revature.spring_boot.web.controllers;
 
 import com.revature.spring_boot.models.MovieCollections;
-import com.revature.spring_boot.repos.MovieCollectionsRepository;
 import com.revature.spring_boot.services.MovieCollectionService;
-import com.revature.spring_boot.web.dtos.CollectionInfoDTO;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
 import com.revature.spring_boot.web.security.TokenParser;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.swagger.annotations.ApiResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static javax.print.attribute.standard.ReferenceUriSchemesSupported.HTTP;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
@@ -48,9 +39,16 @@ public class MovieCollectionsController {
         this.tokenParser = tokenParser;
     }
 
-    @PostMapping(consumes = APPLICATION_JSON_VALUE, value = "/save")
-    public void createMovieCollection(@RequestBody MovieCollectionsDTO newCollection){
-        movieCollectionService.saveCollection(newCollection);    }
+
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/save")
+    @ResponseBody
+    public MovieCollectionsDTO createMovieCollection(@RequestBody @Valid MovieCollectionsDTO newCollection){
+       MovieCollectionsDTO savedItem = new MovieCollectionsDTO(movieCollectionService.saveCollection(newCollection));
+    return savedItem;
+    }
+
 
 
     @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
@@ -72,24 +70,17 @@ public class MovieCollectionsController {
     }
 
 
-//    // TODO: This will need some testing...
-//    @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/update")
-//    public ResponseEntity<String> updateMovieCollections(@RequestBody MovieCollections movieRequest) {
-//        return movieCollectionService.updateMovieCollection(movieRequest);
-//    }
+    @PutMapping("/update/{id}")
+    public MovieCollections updateItems(@PathVariable(value="id") int id, @RequestBody MovieCollectionsDTO updatedItem){
 
-//    @PutMapping(produces = APPLICATION_JSON_VALUE, value = "/update/{movieCollectionsId}")
-//    public MovieCollectionsDTO updateMovieCollectionById(@PathVariable(value= "movieCollectionsId") int movieCollectionsId,
-//                                                                      @RequestBody MovieCollections movieCollect){
-//       MovieCollectionsDTO updatedMovCollDTO = new MovieCollectionsDTO(movieCollectionService.updateMovieCollectionById(movieCollectionsId, movieCollect));
-//       return  updatedMovCollDTO;
-//    }
+        MovieCollections item = movieCollectionService.updateItem(id, updatedItem);
 
+        return item;
+    }
 
-    @DeleteMapping(value = "/delete/{movieCollectionsId}")
-    public void deleteMovieCollection(@PathVariable(value = "movieCollectionsId") int movieCollectionsId) {
-
-        movieCollectionService.deleteCollectionById((movieCollectionsId));
+    @DeleteMapping(value = "/delete/{id}")
+    public void deleteMovieCollection(@PathVariable(value = "id") int id) {
+        movieCollectionService.deleteCollectionById(id);
 
     }
 }
