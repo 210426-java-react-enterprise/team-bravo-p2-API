@@ -3,9 +3,11 @@ package com.revature.spring_boot.services;
 import com.revature.spring_boot.exceptions.DataSourceException;
 import com.revature.spring_boot.exceptions.InvalidRequestException;
 import com.revature.spring_boot.exceptions.ResourceNotFoundException;
+import com.revature.spring_boot.models.CollectionInfo;
 import com.revature.spring_boot.models.MovieCollections;
 import com.revature.spring_boot.repos.CollectionInfoRepository;
 import com.revature.spring_boot.repos.MovieCollectionsRepository;
+import com.revature.spring_boot.web.dtos.CollectionInfoDTO;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,24 +59,29 @@ public class MovieCollectionService {
     }
 
 
-    @Transactional(propagation = Propagation.SUPPORTS)
-    public MovieCollections updateMovieCollectionById(int movieCollectionsId, MovieCollections movieCollect) {
+//    @Transactional(propagation = Propagation.SUPPORTS)
+//    public MovieCollections updateMovieCollectionById(int movieCollectionsId, MovieCollections movieCollect) {
+//
+//    if(collectionInfoRepo.findById(movieCollectionsId).isPresent()) {
+//        MovieCollections existingCollectionItem = collectionInfoRepo.findById(movieCollectionsId).get();
+//
+//        existingCollectionItem.setUserComment(movieCollect.getUserComment());
+//        existingCollectionItem.setTradeable(movieCollect.getTradeable());
+//        existingCollectionItem.setWatched(movieCollect.getWatched());
+//        existingCollectionItem.setUserRating(movieCollect.getUserRating());
+//
+//        MovieCollections updatedCollectionItem = collectionInfoRepo.save(existingCollectionItem);
+//
+//        return updatedCollectionItem;
+//    }
+//        return null;
+//    }
 
-    if(collectionInfoRepo.findById(movieCollectionsId).isPresent()) {
-        MovieCollections existingCollectionItem = collectionInfoRepo.findById(movieCollectionsId).get();
-
-        existingCollectionItem.setUserComment(movieCollect.getUserComment());
-        existingCollectionItem.setTradeable(movieCollect.getTradeable());
-        existingCollectionItem.setWatched(movieCollect.getWatched());
-        existingCollectionItem.setUserRating(movieCollect.getUserRating());
-
-        MovieCollections updatedCollectionItem = collectionInfoRepo.save(existingCollectionItem);
-
-        return updatedCollectionItem;
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void saveCollection(@Valid MovieCollectionsDTO collection){
+       MovieCollections saveCollection = new MovieCollections(collection);
+       collectionInfoRepo.save(saveCollection);
     }
-        return null;
-    }
-
 
 //return of Optional may be better, to avoid null pointer exceptions.
 //    public ResponseEntity<String> updateMovieCollections(int movieCollectionsId, MovieCollections movieRequest) {

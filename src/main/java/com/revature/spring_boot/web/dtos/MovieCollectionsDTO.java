@@ -2,6 +2,7 @@ package com.revature.spring_boot.web.dtos;
 
 import com.revature.spring_boot.models.MovieCollections;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -27,10 +28,12 @@ public class MovieCollectionsDTO {
     @NotEmpty
     private int watched;
 
+    @Column(name = "user_rating")
     private int userRating;
 
-    private int tradable;
+    private int tradeable;
 
+    @Column(name="user_comment")
     private String userDescrip;
 
     public MovieCollectionsDTO() {
@@ -45,7 +48,7 @@ public class MovieCollectionsDTO {
         this.movie = new MovieDTO(movieCollect.getMovies());
         this.owned = movieCollect.getOwned();
         this.watched = movieCollect.getWatched();
-        this.tradable = movieCollect.getTradeable();
+        this.tradeable = movieCollect.getTradeable();
         this.userDescrip = movieCollect.getUserComment();
     }
 
@@ -84,12 +87,12 @@ public class MovieCollectionsDTO {
         this.userRating = userRating;
     }
 
-    public int getTradable() {
-        return tradable;
+    public int getTradeable() {
+        return tradeable;
     }
 
-    public void setTradable(int tradable) {
-        this.tradable = tradable;
+    public void setTradeable(int tradable) {
+        this.tradeable = tradable;
     }
 
     public String getUserDescrip() {
@@ -123,7 +126,7 @@ public class MovieCollectionsDTO {
                 ", owned=" + owned +
                 ", watched=" + watched +
                 ", userRating=" + userRating +
-                ", tradable=" + tradable +
+                ", tradeable=" + tradeable +
                 ", userDescrip='" + userDescrip + '\'' +
                 '}';
     }

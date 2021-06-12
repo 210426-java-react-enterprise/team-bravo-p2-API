@@ -60,7 +60,6 @@ public class CollectionInfoController {
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/save")
     @ResponseBody
     public CollectionInfoDTO saveNewCollectionInfo(@RequestBody @Valid CollectionInfoDTO collectionInfo){
-//        System.out.println(collectionInfo.toString());
         CollectionInfoDTO savedCollectionInfo = new CollectionInfoDTO(collectionInfoService.saveCollectionInfo(collectionInfo));
 
         return savedCollectionInfo;

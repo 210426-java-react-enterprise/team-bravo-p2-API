@@ -2,6 +2,7 @@ package com.revature.spring_boot.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -39,6 +40,19 @@ public class MovieCollections {
     @ManyToOne
     @JoinColumn(name = "movie_id", nullable = false)
     private Movies movies;
+
+    public MovieCollections(MovieCollectionsDTO collection) {
+        //this.collItemId = collection.getId();
+        this.owned = collection.getOwned();
+        this.userRating = collection.getUserRating();
+        this.userComment = collection.getUserDescrip();
+        this.tradeable = collection.getTradeable();
+        this.watched = collection.getWatched();
+    }
+
+    public MovieCollections() {
+
+    }
 
 
     public CollectionInfo getCollectionInfo() {
