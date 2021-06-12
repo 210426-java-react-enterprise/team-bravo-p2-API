@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.revature.spring_boot.models.Movies;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,9 +29,15 @@ public class OmdbMovieDTO {
     private String lengthString;
     private String yearString;
     private String resp;
+    private String actor;
+    private String director;
+    private List<String> actors;
+    private List<String> directors;
 
     public OmdbMovieDTO() {
         super();
+        actors = new ArrayList();
+        directors = new ArrayList();
     }
 
     @JsonCreator
@@ -42,7 +50,9 @@ public class OmdbMovieDTO {
                    @JsonProperty("Plot") String description,
                    @JsonProperty("Type") String type,
                    @JsonProperty("Production")String prodCompany,
-                   @JsonProperty("Response")String resp
+                   @JsonProperty("Response")String resp,
+                   @JsonProperty("Actors") String actor,
+                   @JsonProperty("Director") String director
     ) {
         this.title = title;
         this.yearString = year;
@@ -53,6 +63,8 @@ public class OmdbMovieDTO {
         this.type = type;
         this.prodCompany = prodCompany;
         this.resp = resp;
+        actors = new ArrayList();
+        directors = new ArrayList();
     }
 
     public String getTitle() {

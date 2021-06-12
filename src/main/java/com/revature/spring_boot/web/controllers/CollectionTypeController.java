@@ -6,9 +6,7 @@ import com.revature.spring_boot.web.dtos.CollectionTypeDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,12 +21,12 @@ public class CollectionTypeController {
     private CollectionTypeService collectionTypeService;
 
     @Autowired
-    public CollectionTypeController(CollectionTypeService collectionTypeService){
+    public CollectionTypeController(CollectionTypeService collectionTypeService) {
         this.collectionTypeService = collectionTypeService;
     }
 
-    //    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/create")
-//    public CollectionTypeDTO collectionTypeDTO(@RequestBody CollectionTypeDTO collectionTypeDTO){
+//    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/save")
+//    public CollectionTypeDTO collectionTypeDTO(@RequestBody CollectionTypeDTO collectionTypeDTO) {
 //
 //    }
 
