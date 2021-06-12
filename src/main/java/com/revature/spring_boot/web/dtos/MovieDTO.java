@@ -51,6 +51,9 @@ public class MovieDTO {
         this.genre = movie.getGenre();
         this.description = movie.getDescription();
         this.prodCompany = movie.getProdCompany();
+        if (movie.getImgUrl() != null) {
+            this.imgUrl = movie.getImgUrl();
+        }
     }
 
     public MovieDTO(OmdbMovieDTO movie) {
