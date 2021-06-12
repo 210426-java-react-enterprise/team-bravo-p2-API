@@ -1,5 +1,6 @@
 package com.revature.spring_boot.web.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.revature.spring_boot.models.Account;
 
 import javax.validation.constraints.Email;
@@ -17,11 +18,14 @@ import java.util.stream.Collectors;
  */
 public class AccountDTO {
 
+    @JsonProperty("id")
     private int id;
 
+    @JsonProperty("username")
     @NotEmpty
     private String username;
 
+    @JsonProperty("email")
     @Email
     private String email;
 

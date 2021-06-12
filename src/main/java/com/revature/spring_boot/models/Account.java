@@ -3,6 +3,7 @@ package com.revature.spring_boot.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.revature.spring_boot.web.dtos.AccountDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -43,6 +44,12 @@ public class Account {
 
     public Account(){
 
+    }
+
+    public Account(AccountDTO accountDTO){
+        this.id = accountDTO.getId();
+        this.email = accountDTO.getEmail();
+        this.username = accountDTO.getUsername();
     }
 
     public int getId() {
