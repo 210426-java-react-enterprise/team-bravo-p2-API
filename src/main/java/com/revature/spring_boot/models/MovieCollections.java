@@ -4,6 +4,7 @@ package com.revature.spring_boot.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -34,7 +35,7 @@ public class MovieCollections {
     @Column(name ="tradeable")
     private int tradeable;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "collection_info_id", nullable = false, referencedColumnName = "collection_info_id")
     private CollectionInfo collectionInfo;
 
