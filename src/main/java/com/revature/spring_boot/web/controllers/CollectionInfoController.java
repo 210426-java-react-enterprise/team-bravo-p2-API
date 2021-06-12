@@ -61,7 +61,7 @@ public class CollectionInfoController {
     @ResponseBody
     public CollectionInfoDTO saveNewCollectionInfo(@RequestBody @Valid CollectionInfoDTO collectionInfo){
 //        System.out.println(collectionInfo.toString());
-        CollectionInfoDTO savedCollectionInfo = new CollectionInfoDTO(collectionInfoService.saveCollectionInfo(collectionInfo), 2);
+        CollectionInfoDTO savedCollectionInfo = new CollectionInfoDTO(collectionInfoService.saveCollectionInfo(collectionInfo));
 
         return savedCollectionInfo;
     }

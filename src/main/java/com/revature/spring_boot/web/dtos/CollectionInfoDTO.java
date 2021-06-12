@@ -51,15 +51,12 @@ public class CollectionInfoDTO {
         this.collType = new CollectionTypeDTO(collInfo.getCollectionType());
         this.collectionName = collInfo.getCollectionName();
         this.collectionDescrip = collInfo.getDescription();
-        this.movieCollections = collInfo.getMovieCollectionsSet().stream().map(MovieCollectionsDTO::new).collect(Collectors.toList());
-    }
 
-    public CollectionInfoDTO(CollectionInfo collInfo, int jamesSwitch) {
-        this.id = collInfo.getCollectionInfoId();
-        this.account = new AccountDTO(collInfo.getAcctId());
-        this.collType = new CollectionTypeDTO(collInfo.getCollectionType());
-        this.collectionName = collInfo.getCollectionName();
-        this.collectionDescrip = collInfo.getDescription();
+        if (collInfo.getMovieCollectionsSet() != null) {
+            this.movieCollections = collInfo.getMovieCollectionsSet().stream().map(MovieCollectionsDTO::new).collect(Collectors.toList());
+        } else {
+            this.movieCollections = new ArrayList<>();
+        }
     }
 
     public int getId() {
