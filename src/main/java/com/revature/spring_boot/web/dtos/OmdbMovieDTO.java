@@ -31,6 +31,7 @@ public class OmdbMovieDTO {
     private String resp;
     private String actor;
     private String director;
+    private String imgUrl;
     private List<String> actors;
     private List<String> directors;
 
@@ -50,6 +51,7 @@ public class OmdbMovieDTO {
                    @JsonProperty("Plot") String description,
                    @JsonProperty("Type") String type,
                    @JsonProperty("Production")String prodCompany,
+                   @JsonProperty("Poster")String imgUrl,
                    @JsonProperty("Response")String resp,
                    @JsonProperty("Actors") String actor,
                    @JsonProperty("Director") String director
@@ -62,7 +64,10 @@ public class OmdbMovieDTO {
         this.description = description;
         this.type = type;
         this.prodCompany = prodCompany;
+        this.imgUrl = imgUrl;
         this.resp = resp;
+        this.actor = actor;
+        this.director = director;
         actors = new ArrayList();
         directors = new ArrayList();
     }
@@ -153,6 +158,46 @@ public class OmdbMovieDTO {
 
     public void setResp(String resp) {
         this.resp = resp;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getActor() {
+        return actor;
+    }
+
+    public void setActor(String actor) {
+        this.actor = actor;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public List<String> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<String> actors) {
+        this.actors = actors;
+    }
+
+    public List<String> getDirectors() {
+        return directors;
+    }
+
+    public void setDirectors(List<String> directors) {
+        this.directors = directors;
     }
 
     @Override
