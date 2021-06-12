@@ -3,6 +3,7 @@ package com.revature.spring_boot.web.dtos;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.revature.spring_boot.models.CollectionInfo;
+import com.revature.spring_boot.models.MovieCollections;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
@@ -59,6 +60,10 @@ public class CollectionInfoDTO {
         } else {
             this.movieCollections = new ArrayList<>();
         }
+    }
+
+    public CollectionInfoDTO(MovieCollections movieInfo){
+        this.id = movieInfo.getMovieId();
     }
 
     public int getId() {

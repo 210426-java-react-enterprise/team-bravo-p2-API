@@ -43,7 +43,7 @@ public class MovieCollectionsDTO {
 
     public MovieCollectionsDTO() {
         super();
-        //this.collectionInfo = new CollectionInfoDTO();
+        this.collectionInfo = new CollectionInfoDTO();
         this.movie = new MovieDTO();
     }
 
@@ -57,6 +57,7 @@ public class MovieCollectionsDTO {
         this.userDescrip = movieCollect.getUserComment();
 
     }
+
 
 
     public MovieDTO getMovie() {

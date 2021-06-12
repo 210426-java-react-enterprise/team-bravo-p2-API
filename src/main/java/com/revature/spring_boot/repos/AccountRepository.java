@@ -19,4 +19,5 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query("select case when count(a) > 0 then true else false end from Account a where a.username = :username")
     boolean isUsernameAvailable(String username);
 
+
 }

@@ -58,6 +58,7 @@ public class MovieCollections {
 
     }
 
+
     public CollectionInfo getCollectionInfo() {
         return collectionInfo;
     }
