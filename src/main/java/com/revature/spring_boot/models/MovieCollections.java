@@ -38,7 +38,7 @@ public class MovieCollections {
     @JoinColumn(name = "collection_info_id", nullable = false, referencedColumnName = "collection_info_id")
     private CollectionInfo collectionInfo;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "movie_id", nullable = false, referencedColumnName = "movie_id")
     private Movies movieId;
 

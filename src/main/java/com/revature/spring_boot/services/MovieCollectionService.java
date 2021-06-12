@@ -59,47 +59,12 @@ public class MovieCollectionService {
     }
 
 
-//    @Transactional(propagation = Propagation.SUPPORTS)
-//    public MovieCollections updateMovieCollectionById2(int movieCollectionsId, MovieCollections movieCollect) {
-//
-//    if(collectionInfoRepo.findById(movieCollectionsId).isPresent()) {
-//        MovieCollections existingCollectionItem = collectionInfoRepo.findById(movieCollectionsId).get();
-//
-//        existingCollectionItem.setUserComment(movieCollect.getUserComment());
-//        existingCollectionItem.setTradeable(movieCollect.getTradeable());
-//        existingCollectionItem.setWatched(movieCollect.getWatched());
-//        existingCollectionItem.setUserRating(movieCollect.getUserRating());
-//
-//        MovieCollections updatedCollectionItem = collectionInfoRepo.save(existingCollectionItem);
-//
-//        return updatedCollectionItem;
-//    }
-//        return null;
-//    }
-
     @Transactional(propagation = Propagation.SUPPORTS)
     public MovieCollections saveCollection(MovieCollectionsDTO collection){
        MovieCollections saveCollection = new MovieCollections(collection);
        collectionInfoRepo.save(saveCollection);
 
     return saveCollection; }
-
-//////return of Optional may be better, to avoid null pointer exceptions.
-//    public ResponseEntity<String> updateMovieCollectionById(int movieCollectionsId, MovieCollections updatedCollection) {
-//
-//        Optional<MovieCollections> movieCollections = collectionInfoRepo.findById(updatedCollection.getMovieId());
-//        if(movieCollections.isPresent()) {
-//            movieCollections.get().setUserRating(updatedCollection.getUserRating());
-//            movieCollections.get().setTradeable(updatedCollection.getTradeable());
-//            movieCollections.get().setUserComment(updatedCollection.getUserComment());
-//            movieCollections.get().setWatched(updatedCollection.getWatched());
-//            collectionInfoRepo.save(movieCollections.get());
-//            return new ResponseEntity<String>("Your collection has been updated successfully", HttpStatus.OK);
-//        }
-//
-//        return new ResponseEntity<String>("Unfortunately, we cannot find that collection item", HttpStatus.BAD_REQUEST);
-//
-//    }
 
 
     public MovieCollections updateItem(int id, MovieCollectionsDTO movieCollectionUpdate) {
