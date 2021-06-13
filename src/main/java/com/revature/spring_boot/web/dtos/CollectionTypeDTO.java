@@ -1,5 +1,6 @@
 package com.revature.spring_boot.web.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.revature.spring_boot.models.CollectionType;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,8 +14,10 @@ import javax.validation.constraints.NotEmpty;
  */
 public class CollectionTypeDTO {
 
+    @JsonProperty("id")
     private int id;
 
+    @JsonProperty("mediumType")
     @NotEmpty
     private String mediumType;
 
