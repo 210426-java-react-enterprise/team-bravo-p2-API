@@ -67,11 +67,11 @@ public class AccountService {
 
         isAccountValid(newAcct);
 
-        if (isUsernameAvailable(newAcct.getUsername())) {
+        if (!isUsernameAvailable(newAcct.getUsername())) {
             throw new ResourcePersistenceException("Provided username is already taken!");
         }
 
-        if (isEmailAvailable(newAcct.getEmail())) {
+        if (!isEmailAvailable(newAcct.getEmail())) {
             throw new ResourcePersistenceException("Provided email is already taken!");
         }
 
@@ -84,14 +84,6 @@ public class AccountService {
         isUserValid(newUser);
 
         userRepo.save(newUser);
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED)
-    public void deleteAccountandUser(String username, String password){
-       Account account = authenticate(username, password);
-       User user = userRepo.findUserById(account.getId());
-       userRepo.delete(user);
-       acctRepo.delete(account);
     }
 
 

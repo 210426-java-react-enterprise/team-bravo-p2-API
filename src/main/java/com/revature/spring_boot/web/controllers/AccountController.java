@@ -47,8 +47,6 @@ public class AccountController {
         resp.setHeader(jwtConfig.getHeader(), jwt);
 
         return new AccountDTO(account);
-
-
     }
 
     @PostMapping(value="/register", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
@@ -56,12 +54,5 @@ public class AccountController {
         Account account = accountService.registerAccount(new Account(regDTO.getEmail(), regDTO.getUsername(), regDTO.getPassword()));
         accountService.registerUser(new User(account.getId(), regDTO.getFirstName(), regDTO.getLastName(), regDTO.getAge()));
     }
-
-    @DeleteMapping(value="/deleteAccount", consumes = APPLICATION_JSON_VALUE)
-    public void delete(@RequestBody @Valid Credentials creds){
-        accountService.deleteAccountandUser(creds.getUsername(), creds.getPassword());
-
-    }
-
 
 }

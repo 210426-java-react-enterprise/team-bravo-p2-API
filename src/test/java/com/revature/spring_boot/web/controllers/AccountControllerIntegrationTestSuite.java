@@ -31,13 +31,11 @@ public class AccountControllerIntegrationTestSuite {
     private MockMvc mockMvc;
 
     private WebApplicationContext webContext;
-    private TokenGenerator tokenGenerator;
     private AccountRepository accountRepo;
 
     @Autowired
-    public AccountControllerIntegrationTestSuite(WebApplicationContext webContext, TokenGenerator tokenGenerator, AccountRepository accountRepo) {
+    public AccountControllerIntegrationTestSuite(WebApplicationContext webContext, AccountRepository accountRepo) {
         this.webContext = webContext;
-        this.tokenGenerator = tokenGenerator;
         this.accountRepo = accountRepo;
     }
 
@@ -45,10 +43,6 @@ public class AccountControllerIntegrationTestSuite {
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webContext).build();
 
-    }
-
-    @AfterEach
-    public void teardown(){
     }
 
     @Test
@@ -70,7 +64,7 @@ public class AccountControllerIntegrationTestSuite {
     }
 
     @Test
-    public void login() throws Exception{
+    public void test_login() throws Exception{
         accountRepo.save(new Account("mock6@mock.com", "mockman6", "mockPass6"));
 
         Credentials creds = new Credentials();
@@ -86,10 +80,7 @@ public class AccountControllerIntegrationTestSuite {
 
     }
 
-//    @Test
-//    public void test_delete(){
-//
-//    }
+
 
     public static String asJsonString(final Object obj) {
         try {
