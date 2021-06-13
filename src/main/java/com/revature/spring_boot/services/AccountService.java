@@ -5,6 +5,8 @@ import com.revature.spring_boot.models.Account;
 import com.revature.spring_boot.models.User;
 import com.revature.spring_boot.repos.AccountRepository;
 import com.revature.spring_boot.repos.UserRepository;
+import com.revature.spring_boot.web.dtos.AccountDTO;
+import com.revature.spring_boot.web.dtos.RegDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -77,12 +79,21 @@ public class AccountService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public User registerUser(User newUser) throws InvalidRequestException, ResourcePersistenceException {
+    public void registerUser(User newUser) throws InvalidRequestException, ResourcePersistenceException {
 
         isUserValid(newUser);
 
-        return userRepo.save(newUser);
+        userRepo.save(newUser);
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void deleteAccountandUser(String username, String password){
+       Account account = authenticate(username, password);
+       User user = userRepo.findUserById(account.getId());
+       userRepo.delete(user);
+       acctRepo.delete(account);
+    }
+
 
     @Transactional(readOnly = true)
     public Account authenticate(String username, String password) throws AuthException {

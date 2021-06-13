@@ -1,6 +1,7 @@
 package com.revature.spring_boot.web.controllers;
 
 
+import com.revature.spring_boot.repos.AccountRepository;
 import com.revature.spring_boot.web.dtos.Credentials;
 import com.revature.spring_boot.web.dtos.RegDTO;
 import com.revature.spring_boot.services.AccountService;
@@ -39,12 +40,6 @@ public class AccountController {
         this.jwtConfig = jwtConfig;
     }
 
-    @GetMapping("/test")
-    public String test() {
-        logger.info("/users/test invoked at {}", LocalDateTime.now());
-        return "/users/test works!";
-    }
-
     @PostMapping(value = "/login", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public AccountDTO authenticate(@RequestBody @Valid Credentials creds, HttpServletResponse resp) {
         Account account = accountService.authenticate(creds.getUsername(), creds.getPassword());
@@ -57,14 +52,14 @@ public class AccountController {
     }
 
     @PostMapping(value="/register", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public Map<String, Object> register(@RequestBody @Valid RegDTO regDTO){
+    public void register(@RequestBody @Valid RegDTO regDTO){
         Account account = accountService.registerAccount(new Account(regDTO.getEmail(), regDTO.getUsername(), regDTO.getPassword()));
-        User user = accountService.registerUser(new User(account.getId(), regDTO.getFirstName(), regDTO.getLastName(), regDTO.getAge()));
-        Map<String, Object> map = new HashMap<>();
-        map.put("User", user);
-        map.put("Account", account);
-        return map;
+        accountService.registerUser(new User(account.getId(), regDTO.getFirstName(), regDTO.getLastName(), regDTO.getAge()));
+    }
 
+    @DeleteMapping(value="/deleteAccount", consumes = APPLICATION_JSON_VALUE)
+    public void delete(@RequestBody @Valid Credentials creds){
+        accountService.deleteAccountandUser(creds.getUsername(), creds.getPassword());
 
     }
 
