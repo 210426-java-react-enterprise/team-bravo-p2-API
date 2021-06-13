@@ -35,7 +35,7 @@ public class MovieCollections {
     @Column(name ="tradeable")
     private int tradeable;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "collection_info_id", nullable = false, referencedColumnName = "collection_info_id")
     private CollectionInfo collectionInfo;
 

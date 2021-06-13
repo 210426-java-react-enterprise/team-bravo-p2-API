@@ -35,7 +35,7 @@ public class CollectionInfo {
 
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "collectionInfo")
+    @OneToMany(mappedBy = "collectionInfo")
     private List<MovieCollections> movieCollectionsSet;
 
 
