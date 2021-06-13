@@ -1,23 +1,21 @@
 package com.revature.spring_boot.web.controllers;
 
 import com.revature.spring_boot.models.Account;
-import com.revature.spring_boot.models.CollectionInfo;
-import com.revature.spring_boot.models.CollectionType;
+
 import com.revature.spring_boot.repos.CollectionInfoRepository;
 import com.revature.spring_boot.services.CollectionInfoService;
+import com.revature.spring_boot.web.dtos.AccountDTO;
 import com.revature.spring_boot.web.dtos.CollectionInfoDTO;
-<<<<<<< HEAD
-import com.revature.spring_boot.web.security.JwtConfig;
+
 import com.revature.spring_boot.web.security.TokenParser;
-=======
-import com.revature.spring_boot.web.dtos.CollectionTypeDTO;
->>>>>>> origin/dev
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,11 +52,12 @@ public class CollectionInfoController {
         return collectionsInfo;
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getInfoByID")
+    @GetMapping(value = "/getInfoById")
     public List<CollectionInfoDTO> getCollectionInfoByID(HttpServletRequest req){
-        int accountID =  tokenParser.tokenID(req);
-       Account account = new Account();
-       account.setId(accountID);
+        int accountID = tokenParser.tokenID(req);
+        System.out.println(accountID);
+        Account account = new Account();
+        account.setId(accountID);
 
 
         List<CollectionInfoDTO> collectionInfo = collectionInfoRepository.findCollectionInfoByAccount_id(account)
