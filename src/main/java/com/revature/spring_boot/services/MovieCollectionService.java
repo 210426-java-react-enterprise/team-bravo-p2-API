@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -62,7 +64,10 @@ public class MovieCollectionService {
     @Transactional(propagation = Propagation.SUPPORTS)
     public MovieCollections saveCollection(MovieCollectionsDTO collection){
        MovieCollections saveCollection = new MovieCollections(collection);
-       collectionInfoRepo.save(saveCollection);
+
+       collectionInfoRepo.insertMovieCollection(collection.getOwned(), collection.getWatched(),
+               collection.getUserRating(), collection.getUserDescrip(), collection.getTradeable(),
+               collection.getCollectionInfo().getId(), collection.getMovie().getId());
 
     return saveCollection; }
 

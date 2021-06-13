@@ -35,7 +35,7 @@ public class CollectionInfo {
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "collectionInfo")
+    @OneToMany(mappedBy = "collectionInfo", orphanRemoval = true)
     private List<MovieCollections> movieCollectionsSet;
 
 
@@ -54,6 +54,9 @@ public class CollectionInfo {
     public CollectionInfo(){};
 
     public CollectionInfo(CollectionInfoDTO collectionInfoDTO){
+        if (collectionInfoDTO.getId() != 0) {
+            this.collectionInfoId = collectionInfoDTO.getId();
+        }
         this.collectionName = collectionInfoDTO.getCollectionName();
         this.acctId = new Account(collectionInfoDTO.getAccount());
         this.collectionName = collectionInfoDTO.getCollectionName();

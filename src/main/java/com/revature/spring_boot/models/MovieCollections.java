@@ -68,7 +68,6 @@ public class MovieCollections {
     }
 
 
-
     public void setMovieId(Movies movieId) {
         this.movieId = movieId;
     }
