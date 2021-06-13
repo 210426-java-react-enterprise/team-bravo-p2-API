@@ -62,8 +62,7 @@ public class MovieCollectionService {
     @Transactional(propagation = Propagation.SUPPORTS)
     public MovieCollections saveCollection(MovieCollectionsDTO collection){
        MovieCollections saveCollection = new MovieCollections(collection);
-//       collectionInfoRepo.insertItem(saveCollection.getCollectionInfo().getCollectionInfoId(), saveCollection.getMovieId(), saveCollection.getOwned(),
-//               saveCollection.getTradeable(), saveCollection.getUserComment(), saveCollection.getUserRating(), saveCollection.getWatched());
+       collectionInfoRepo.save(saveCollection);
 
     return saveCollection; }
 
