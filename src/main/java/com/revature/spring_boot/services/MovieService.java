@@ -41,7 +41,7 @@ public class MovieService {
         return returnValue;
     }
 
-    public Movies existCheck(MovieDTO movie) {
+    private Movies existCheck(MovieDTO movie) {
 
         List<Movies> existCheck = movieRepository.exists(movie.getTitle(), movie.getYear(), movie.getMpaaRating(),
                 movie.getLengthMin(), movie.getGenre(), movie.getDescription(), movie.getProdCompany());
