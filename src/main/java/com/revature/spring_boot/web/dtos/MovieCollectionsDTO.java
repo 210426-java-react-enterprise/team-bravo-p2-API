@@ -118,12 +118,12 @@ public class MovieCollectionsDTO {
 
     @Override
     public String toString() {
-        return "MovieCollectionsDTO{" +
-                "id=" + id +
-                ", owned=" + owned +
-                ", watched=" + watched +
-                ", userRating=" + userRating +
-                ", tradable=" + tradable +
+        return "MovieCollectionsDTO{" + '\'' +
+                "id=" + id + '\'' +
+                ", owned=" + owned + '\'' +
+                ", watched=" + watched + '\'' +
+                ", userRating=" + userRating + '\'' +
+                ", tradable=" + tradable + '\'' +
                 ", userDescrip='" + userDescrip + '\'' +
                 '}';
     }

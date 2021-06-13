@@ -1,9 +1,13 @@
 package com.revature.spring_boot.web.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.spi.json.GsonJsonProvider;
+import com.google.gson.Gson;
 import com.revature.spring_boot.models.*;
 import com.revature.spring_boot.repos.AccountRepository;
-import com.revature.spring_boot.repos.MovieCollectionsRepository;
 import com.revature.spring_boot.services.MovieCollectionService;
+import com.revature.spring_boot.web.dtos.AccountDTO;
+import com.revature.spring_boot.web.dtos.CollectionTypeDTO;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
 import com.revature.spring_boot.web.security.TokenGenerator;
 import org.junit.jupiter.api.AfterEach;
@@ -27,7 +31,6 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @Transactional
 @SpringBootTest
@@ -44,9 +47,11 @@ public class MovieCollectionsControllerTest {
     private List<MovieCollections> movieCollectionsList;
     private List<MovieCollectionsDTO> movieCollectionsDTOList;
     private Account account;
+    private AccountDTO accountDTO;
     //private MovieCollectionsRepository mockMovieCollectionRepo;
     private CollectionInfo collectionInfo;
     private CollectionType collectionType;
+    private CollectionTypeDTO collectionTypeDTO;
     private MovieCollections movieCollections;
     private MovieCollectionsDTO movieCollectionsDTO;
     private Movies movie1;
@@ -68,9 +73,13 @@ public class MovieCollectionsControllerTest {
         account = new Account("test@test.com", "Tester", "testing123");
         account.setId(1);
 
+        accountDTO = new AccountDTO(account);
+
         collectionType = new CollectionType();
         collectionType.setId(1);
         collectionType.setMediumType("Movies");
+
+        collectionTypeDTO = new CollectionTypeDTO(collectionType);
 
         collectionInfo = new CollectionInfo();
         collectionInfo.setCollectionInfoId(1);
@@ -99,6 +108,9 @@ public class MovieCollectionsControllerTest {
         movieCollections.setUserRating(10);
         movieCollections.setCollectionInfo(collectionInfo);
 
+        movieCollectionsList = new ArrayList<>();
+        movieCollectionsList.add(movieCollections);
+
         movieCollectionsDTO = new MovieCollectionsDTO(movieCollections);
 
         movieCollectionsDTOList = new ArrayList<>();
@@ -123,12 +135,16 @@ public class MovieCollectionsControllerTest {
     @Test
     public void test_getAllMovieCollections() throws Exception {
 
-        when(mockMCS.getAllMovieCollections()).thenReturn(movieCollectionsList);
+        when(mockMCS.getAllMovieCollections()).thenReturn(movieCollectionsList);//this may be pointless
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .get("/movieCollections/getAll")
                 .contentType(MediaType.APPLICATION_JSON))
+                //.andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
+                //.andExpect(MockMvcResultMatchers.jsonPath("$[0].getUserDescrip").value("This is just a test."))
                 .andExpect(MockMvcResultMatchers.status().isOk());
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.collection_id").value(movieCollectionsDTOList.get(0).getId()))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.user_comment").value(movieCollectionsDTOList.get(0).getUserDescrip()));
 
     }
 
@@ -137,12 +153,65 @@ public class MovieCollectionsControllerTest {
     @Test
     public void test_getMovieCollectionsById() throws Exception {
 
-        when(mockMCS.getMovieCollectionsById(any(Integer.class))).thenReturn(movieCollections);
+        when(mockMCS.getMovieCollectionsById(any(Integer.class))).thenReturn(movieCollections);//pointless?
 
         this.mockMvc.perform(MockMvcRequestBuilders.get("/movieCollections/getByID/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
+    }
+
+
+    @Test
+    public void test_updateMovieCollectionById() throws Exception {
+
+        when(mockMCS.updateMovieCollectionById(any(Integer.class), any(MovieCollections.class))).thenReturn(movieCollections);
+
+//        StringBuilder jsonTestLine = new StringBuilder();
+//        jsonTestLine.append("{\n");
+//        jsonTestLine.append("\"collection_id\":").append(movieCollections.getMovieId()).append("\n");
+//        jsonTestLine.append("\"owned\":").append(movieCollections.getOwned()).append("\n");
+//        jsonTestLine.append("\"watched\":").append(movieCollections.getWatched()).append("\n");
+//        jsonTestLine.append("\"user_rating\":").append(movieCollections.getUserRating()).append("\n");
+//        jsonTestLine.append("\"user_comment\":").append(movieCollections.getUserComment()).append("\n");
+//        jsonTestLine.append("\"tradeable\":").append(movieCollections.getTradeable()).append("\n");
+//        jsonTestLine.append("\"owned\":").append(movieCollections.getOwned()).append("\n");
+//        jsonTestLine.append("}");
+//
+//        String jsonStringLine = jsonTestLine.toString();
+
+        //GsonJsonProvider gson4 = new GsonJsonProvider();
+        //String jsonLine = gson4.toJson(movieCollections);
+
+        Gson gson = new Gson();
+        String jsonLine = gson.toJson(movieCollections);
+
+
+        this.mockMvc.perform(MockMvcRequestBuilders.put("/movieCollections/update/" + accountDTO.getId())
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON)//unnecessary?
+                .characterEncoding("UTF-8")//unnecessary?
+                .content(jsonLine))
+                //.content(jsonStringLine))
+                //.content(movieCollections.toString()))//body
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+
+    }
+
+
+    @Test
+    public void test2_updateMovieCollectionById(){
+
+    }
+
+
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
