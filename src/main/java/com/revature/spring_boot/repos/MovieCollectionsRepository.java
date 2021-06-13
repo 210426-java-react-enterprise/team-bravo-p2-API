@@ -9,10 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.List;
-
 
 /**
  * Created by IntelliJ IDEA.
@@ -38,6 +34,21 @@ public interface MovieCollectionsRepository extends JpaRepository<MovieCollectio
                     @Param("userRating") int userRating, @Param("userComment") String userComment,
                     @Param("tradeable") int tradeable, @Param("collectionInfo") int collectionInfo,
                     @Param("movieId") int movieId);
+
+
+
+    @Transactional
+    @Modifying
+    @Query(
+            value =
+                    "select from movie_collections (owned, watched, user_rating, user_comment, tradeable, collection_info_id, movie_id) values (:owned, :watched, :userRating, :userComment, :tradeable, :collectionInfo, :movieId)",
+            nativeQuery = true)
+    MovieCollections getMovieCollections(@Param("owned") int owned, @Param("watched") int watched,
+                             @Param("userRating") int userRating, @Param("userComment") String userComment,
+                             @Param("tradeable") int tradeable, @Param("collectionInfo") int collectionInfo,
+                             @Param("movieId") int movieId);
+
+
 
 //  @Query("FROM MovieCollections mc where mc.collectionInfoId = :collectionInfoId")
 //    MovieCollections findMovieCollectionsByCollectionInfoId(int collectionInfoId);

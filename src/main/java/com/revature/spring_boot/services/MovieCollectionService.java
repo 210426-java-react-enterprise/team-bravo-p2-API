@@ -3,22 +3,14 @@ package com.revature.spring_boot.services;
 import com.revature.spring_boot.exceptions.DataSourceException;
 import com.revature.spring_boot.exceptions.InvalidRequestException;
 import com.revature.spring_boot.exceptions.ResourceNotFoundException;
-import com.revature.spring_boot.models.CollectionInfo;
 import com.revature.spring_boot.models.MovieCollections;
-import com.revature.spring_boot.repos.CollectionInfoRepository;
 import com.revature.spring_boot.repos.MovieCollectionsRepository;
-import com.revature.spring_boot.web.dtos.CollectionInfoDTO;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 

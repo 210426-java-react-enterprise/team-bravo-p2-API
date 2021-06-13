@@ -46,7 +46,11 @@ public class MovieCollectionsController {
     @ResponseBody
     public MovieCollectionsDTO createMovieCollection(@RequestBody @Valid MovieCollectionsDTO newCollection){
        MovieCollectionsDTO savedItem = new MovieCollectionsDTO(movieCollectionService.saveCollection(newCollection));
-    return savedItem;
+
+
+        if(savedItem != null){
+            return savedItem;
+        } else { return null;}
     }
 
 
