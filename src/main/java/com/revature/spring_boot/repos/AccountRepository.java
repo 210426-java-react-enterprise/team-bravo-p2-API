@@ -13,10 +13,10 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 
     Optional<Account> findAccountByUsernameAndPassword(String username, String Password);
 
-    @Query("select case when count(a) > 0 then true else false end from Account a where a.email = :email")
+    @Query("select case when count(a) > 0 then false else true end from Account a where a.email = :email")
     boolean isEmailAvailable(String email);
 
-    @Query("select case when count(a) > 0 then true else false end from Account a where a.username = :username")
+    @Query("select case when count(a) > 0 then false else true end from Account a where a.username = :username")
     boolean isUsernameAvailable(String username);
 
 }
