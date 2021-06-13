@@ -3,6 +3,7 @@ package com.revature.spring_boot.web.controllers;
 import com.revature.spring_boot.models.MovieCollections;
 import com.revature.spring_boot.repos.MovieCollectionsRepository;
 import com.revature.spring_boot.services.MovieCollectionService;
+import com.revature.spring_boot.web.dtos.MovieCollectionInsertDTO;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
 import com.revature.spring_boot.web.security.TokenParser;
 import io.jsonwebtoken.Claims;
@@ -17,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -76,6 +78,17 @@ public class MovieCollectionsController {
                                                                       @RequestBody MovieCollections movieCollect){
        MovieCollectionsDTO updatedMovCollDTO = new MovieCollectionsDTO(movieCollectionService.updateMovieCollectionById(movieCollectionsId, movieCollect));
        return  updatedMovCollDTO;
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/save")
+    @ResponseBody
+    public MovieCollectionInsertDTO createMovieCollection(@RequestBody @Valid MovieCollectionInsertDTO newCollection){
+        MovieCollectionInsertDTO savedItem = movieCollectionService.saveCollection(newCollection);
+
+        if(savedItem != null){
+            return savedItem;
+        } else { return null;}
     }
 
 

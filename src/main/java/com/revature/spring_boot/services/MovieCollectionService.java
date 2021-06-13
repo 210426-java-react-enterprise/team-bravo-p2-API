@@ -6,6 +6,7 @@ import com.revature.spring_boot.exceptions.ResourceNotFoundException;
 import com.revature.spring_boot.models.MovieCollections;
 import com.revature.spring_boot.repos.CollectionInfoRepository;
 import com.revature.spring_boot.repos.MovieCollectionsRepository;
+import com.revature.spring_boot.web.dtos.MovieCollectionInsertDTO;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,21 +56,29 @@ public class MovieCollectionService {
 
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public MovieCollectionInsertDTO saveCollection(MovieCollectionInsertDTO collection){
 
+        collectionInfoRepo.insertMovieCollection(collection.getOwned(), collection.getWatched(),
+                collection.getUserRating(), collection.getUserDescrip(), collection.getTradable(),
+                collection.getCollectionInfoId(), collection.getMovieID());
 
+        return collection; }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
     public MovieCollections updateMovieCollectionById(int movieCollectionsId, MovieCollections movieCollect) {
 
-    if(collectionInfoRepo.findById(movieCollectionsId).isPresent()) {
-        MovieCollections existingCollectionItem = collectionInfoRepo.findById(movieCollectionsId).get();
+        if(collectionInfoRepo.findById(movieCollectionsId).isPresent()) {
+            MovieCollections existingCollectionItem = collectionInfoRepo.findById(movieCollectionsId).get();
 
-        existingCollectionItem.setUserComment(movieCollect.getUserComment());
-        existingCollectionItem.setTradeable(movieCollect.getTradeable());
-        existingCollectionItem.setWatched(movieCollect.getWatched());
-        existingCollectionItem.setUserRating(movieCollect.getUserRating());
+            existingCollectionItem.setUserComment(movieCollect.getUserComment());
+            existingCollectionItem.setTradeable(movieCollect.getTradeable());
+            existingCollectionItem.setWatched(movieCollect.getWatched());
+            existingCollectionItem.setUserRating(movieCollect.getUserRating());
 
-        MovieCollections updatedCollectionItem = collectionInfoRepo.save(existingCollectionItem);
+            MovieCollections updatedCollectionItem = collectionInfoRepo.save(existingCollectionItem);
 
-        return updatedCollectionItem;
+            return updatedCollectionItem;
     }
         return null;
     }
