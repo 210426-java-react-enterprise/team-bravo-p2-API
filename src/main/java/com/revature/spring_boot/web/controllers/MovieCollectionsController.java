@@ -57,8 +57,8 @@ public class MovieCollectionsController {
 
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getByID")
-    public MovieCollectionsDTO getMovieCollectionsById(@PathVariable int movieCollectionsId) {
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getByID/{id}")
+    public MovieCollectionsDTO getMovieCollectionsById(@PathVariable("id") int movieCollectionsId) {
         MovieCollectionsDTO movCollDTO = new MovieCollectionsDTO(movieCollectionService.getMovieCollectionsById(movieCollectionsId));
 
         return movCollDTO;

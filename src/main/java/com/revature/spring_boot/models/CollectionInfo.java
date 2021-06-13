@@ -53,7 +53,7 @@ public class CollectionInfo {
     public CollectionInfo(CollectionInfoDTO collectionInfoDTO){
         this.collectionName = collectionInfoDTO.getCollectionName();
         this.acctId = new Account(collectionInfoDTO.getAccount());
-        this.collectionName = collectionInfoDTO.getCollectionName();
+        //this.collectionName = collectionInfoDTO.getCollectionName();
         this.description = collectionInfoDTO.getCollectionDescrip();
         this.collectionType = new CollectionType(collectionInfoDTO.getCollType());
     };
