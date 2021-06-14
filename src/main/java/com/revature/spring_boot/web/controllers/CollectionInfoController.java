@@ -82,4 +82,11 @@ public class CollectionInfoController {
           
         return collectionInfo;
     }
+
+    @DeleteMapping(value = "/delete/{collectionId}")
+    public void deleteMovieCollection(@PathVariable(value = "movieCollectionsId") int collectionId) {
+
+        collectionInfoService.deleteCollectionById(collectionId);
+
+    }
 }

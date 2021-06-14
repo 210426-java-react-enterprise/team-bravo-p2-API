@@ -33,6 +33,11 @@ public class CollectionInfoService {
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
+    public void deleteCollectionById(int collectionId) {
+        collectionInfoRepo.deleteById(collectionId);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
     public List<CollectionInfo> getAllCollectionInfo() {
         return collectionInfoRepo.findAll();
     }

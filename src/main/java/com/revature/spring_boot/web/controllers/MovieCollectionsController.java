@@ -86,16 +86,14 @@ public class MovieCollectionsController {
     public MovieCollectionInsertDTO createMovieCollection(@RequestBody @Valid MovieCollectionInsertDTO newCollection){
         MovieCollectionInsertDTO savedItem = movieCollectionService.saveCollection(newCollection);
 
-        if(savedItem != null){
-            return savedItem;
-        } else { return null;}
+        return savedItem;
     }
 
 
     @DeleteMapping(value = "/delete/{movieCollectionsId}")
     public void deleteMovieCollection(@PathVariable(value = "movieCollectionsId") int movieCollectionsId) {
 
-        movieCollectionService.deleteCollectionById((movieCollectionsId));
+        movieCollectionService.deleteCollectionById(movieCollectionsId);
 
     }
 }
