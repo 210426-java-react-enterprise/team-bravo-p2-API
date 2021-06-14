@@ -18,13 +18,13 @@ public class MovieDTO {
     @NotEmpty
     private String title;
 
-    @NotEmpty
+    //@NotEmpty
     private int year;
 
     @NotEmpty
     private String mpaaRating;
 
-    @NotEmpty
+    //@NotEmpty
     private int lengthMin;
 
     @NotEmpty
@@ -35,6 +35,8 @@ public class MovieDTO {
 
     @NotEmpty
     private String prodCompany;
+
+    private String imgUrl;
 
     public MovieDTO() {
         super();
@@ -49,6 +51,9 @@ public class MovieDTO {
         this.genre = movie.getGenre();
         this.description = movie.getDescription();
         this.prodCompany = movie.getProdCompany();
+        if (movie.getImgUrl() != null) {
+            this.imgUrl = movie.getImgUrl();
+        }
     }
 
     public MovieDTO(OmdbMovieDTO movie) {
@@ -59,6 +64,7 @@ public class MovieDTO {
         this.genre = movie.getGenre();
         this.description = movie.getDescription();
         this.prodCompany = movie.getProdCompany();
+        this.imgUrl = movie.getImgUrl();
     }
 
     public int getId() {
@@ -123,6 +129,14 @@ public class MovieDTO {
 
     public void setProdCompany(String prodCompany) {
         this.prodCompany = prodCompany;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     @Override
