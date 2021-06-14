@@ -1,9 +1,9 @@
 package com.revature.spring_boot.web.controllers;
 
-import com.revature.spring_boot.models.Director;
-import com.revature.spring_boot.repos.AccountRepository;
-import com.revature.spring_boot.services.DirectorService;
-import com.revature.spring_boot.web.security.TokenGenerator;
+
+import com.revature.spring_boot.models.Actor;
+import com.revature.spring_boot.repos.ActorRepository;
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,50 +18,29 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 @Transactional
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class DirectorControllerTest {
-
+public class ActorsControllerIntegrationTestSuite {
     private MockMvc mockMvc;
-
     private WebApplicationContext webContext;
 
-    private DirectorService mockDirectorService;
-
     @Autowired
-    public DirectorControllerTest(WebApplicationContext webContext) {
+    public ActorsControllerIntegrationTestSuite(WebApplicationContext webContext){
         this.webContext = webContext;
     }
 
     @BeforeEach
     public void setUp(){
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webContext).build();
-        mockDirectorService = mock(DirectorService.class);
+
     }
 
     @Test
-    public void test_getAllDirectors() throws Exception {
-        Director director = new Director();
-        director.setId(1);
-        director.setFirstName("Testy");
-        director.setLastName("Tester");
+    public void test_getAllActors() throws Exception{
 
-        List<Director> directorList = new ArrayList<>();
-        directorList.add(director);
-
-        when(mockDirectorService.getDirectorList()).thenReturn(directorList);
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/director/get-all")
+        mockMvc.perform(MockMvcRequestBuilders.get("/actors/get-all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
-
     }
-
 }

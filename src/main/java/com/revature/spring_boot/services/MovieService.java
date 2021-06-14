@@ -18,7 +18,7 @@ public class MovieService {
     private MovieRepository movieRepository;
 
     @Autowired
-    public MovieService(MovieRepository movieRepository, MovieRepository movieRepository2){
+    public MovieService(MovieRepository movieRepository){
         this.movieRepository = movieRepository;
     }
 
@@ -41,7 +41,7 @@ public class MovieService {
         return returnValue;
     }
 
-    private Movies existCheck(MovieDTO movie) {
+    public Movies existCheck(MovieDTO movie) {
 
         List<Movies> existCheck = movieRepository.exists(movie.getTitle(), movie.getYear(), movie.getMpaaRating(),
                 movie.getLengthMin(), movie.getGenre(), movie.getDescription(), movie.getProdCompany());
