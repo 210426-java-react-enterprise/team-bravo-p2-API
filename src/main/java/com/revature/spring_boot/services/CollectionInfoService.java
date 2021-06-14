@@ -1,5 +1,6 @@
 package com.revature.spring_boot.services;
 
+import com.revature.spring_boot.exceptions.ResourceNotFoundException;
 import com.revature.spring_boot.models.CollectionInfo;
 
 import com.revature.spring_boot.models.CollectionType;
@@ -30,6 +31,13 @@ public class CollectionInfoService {
     @Autowired
     public CollectionInfoService(CollectionInfoRepository collectionInfoRepo){
         this.collectionInfoRepo = collectionInfoRepo;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void deleteCollectionById(int collectionId) {
+        CollectionInfo existingCollection = collectionInfoRepo.findById(collectionId)
+                .orElseThrow(() -> new ResourceNotFoundException());
+            collectionInfoRepo.delete(existingCollection);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)

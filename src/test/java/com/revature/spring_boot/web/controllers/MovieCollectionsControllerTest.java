@@ -9,6 +9,7 @@ import com.revature.spring_boot.repos.AccountRepository;
 import com.revature.spring_boot.services.MovieCollectionService;
 import com.revature.spring_boot.web.dtos.AccountDTO;
 import com.revature.spring_boot.web.dtos.CollectionTypeDTO;
+import com.revature.spring_boot.web.dtos.MovieCollectionInsertDTO;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
 import com.revature.spring_boot.web.security.TokenGenerator;
 import org.junit.Assert;
@@ -140,8 +141,10 @@ public class MovieCollectionsControllerTest {
 
         when(mockMCS.getAllMovieCollections()).thenReturn(movieCollectionsList);//this may be pointless
 
+
         this.mockMvc.perform(MockMvcRequestBuilders
                 .get("/movieCollections/get-all")
+
                 .contentType(MediaType.APPLICATION_JSON))
                 //.andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
                 //.andExpect(MockMvcResultMatchers.jsonPath("$[0].getUserDescrip").value("This is just a test."))
@@ -168,7 +171,7 @@ public class MovieCollectionsControllerTest {
     @Test
     public void test_updateMovieCollectionById() throws Exception {
 
-        when(mockMCS.updateMovieCollectionById(any(Integer.class), any(MovieCollections.class))).thenReturn(movieCollections);
+        when(mockMCS.updateMovieCollectionById(any(Integer.class), any(MovieCollectionInsertDTO.class))).thenReturn(movieCollections);
 
         Gson gson = new Gson();
         String jsonLine = gson.toJson(movieCollections);
@@ -183,12 +186,12 @@ public class MovieCollectionsControllerTest {
     }
 
 
-    @Test
-    public void test_deleteMovieCollection() throws Exception {
-        //doNothing().when(mockMCS.deleteCollectionById(anyInt()));
-
+//    @Test
+//    public void test_deleteMovieCollection() throws Exception {
+//        doNothing().when(mockMCS.deleteCollectionById(anyInt()));
+//
 //        mockMvc.perform(MockMvcRequestBuilders.delete("/movieCollections/delete/" + accountDTO.getId())
 //                .contentType(MediaType.APPLICATION_JSON_VALUE));
-    }
+//    }
 
 }

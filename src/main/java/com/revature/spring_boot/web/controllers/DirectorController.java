@@ -26,7 +26,7 @@ public class DirectorController {
         this.directorService = directorService;
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<DirectorDTO> getAllDirectors(){
         List<DirectorDTO> directorDTOList = directorService.getDirectorList().stream()
                 .map(DirectorDTO::new)

@@ -48,7 +48,7 @@ public class MovieCollectionsController {
         this.tokenParser = tokenParser;
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<MovieCollectionsDTO> getAllMovieCollections() {
         List<MovieCollectionsDTO> movieCollections = movieCollectionService.getAllMovieCollections()
                 .stream()
@@ -59,7 +59,7 @@ public class MovieCollectionsController {
 
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getByID/{id}")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-by-id/{id}")
     public MovieCollectionsDTO getMovieCollectionsById(@PathVariable("id") int movieCollectionsId) {
         MovieCollectionsDTO movCollDTO = new MovieCollectionsDTO(movieCollectionService.getMovieCollectionsById(movieCollectionsId));
 
@@ -75,7 +75,7 @@ public class MovieCollectionsController {
 
     @PutMapping(produces = APPLICATION_JSON_VALUE, value = "/update/{movieCollectionsId}")
     public MovieCollectionsDTO updateMovieCollectionById(@PathVariable(value="movieCollectionsId") int movieCollectionsId,
-                                                                      @RequestBody MovieCollections movieCollect){
+                                                                      @RequestBody MovieCollectionInsertDTO movieCollect){
        MovieCollectionsDTO updatedMovCollDTO = new MovieCollectionsDTO(movieCollectionService.updateMovieCollectionById(movieCollectionsId, movieCollect));
        return  updatedMovCollDTO;
     }
@@ -86,16 +86,14 @@ public class MovieCollectionsController {
     public MovieCollectionInsertDTO createMovieCollection(@RequestBody @Valid MovieCollectionInsertDTO newCollection){
         MovieCollectionInsertDTO savedItem = movieCollectionService.saveCollection(newCollection);
 
-        if(savedItem != null){
-            return savedItem;
-        } else { return null;}
+        return savedItem;
     }
 
 
     @DeleteMapping(value = "/delete/{movieCollectionsId}")
     public void deleteMovieCollection(@PathVariable(value = "movieCollectionsId") int movieCollectionsId) {
 
-        movieCollectionService.deleteCollectionById((movieCollectionsId));
+        movieCollectionService.deleteCollectionById(movieCollectionsId);
 
     }
 }
