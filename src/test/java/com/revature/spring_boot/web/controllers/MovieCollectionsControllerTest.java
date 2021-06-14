@@ -140,8 +140,7 @@ public class MovieCollectionsControllerTest {
 
         when(mockMCS.getAllMovieCollections()).thenReturn(movieCollectionsList);//this may be pointless
 
-        this.mockMvc.perform(MockMvcRequestBuilders
-                .get("/movieCollections/getAll")
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/movieCollections/getAll")
                 .contentType(MediaType.APPLICATION_JSON))
                 //.andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
                 //.andExpect(MockMvcResultMatchers.jsonPath("$[0].getUserDescrip").value("This is just a test."))
@@ -183,12 +182,12 @@ public class MovieCollectionsControllerTest {
     }
 
 
-    @Test
-    public void test_deleteMovieCollection() throws Exception {
-        //doNothing().when(mockMCS.deleteCollectionById(anyInt()));
-
+//    @Test
+//    public void test_deleteMovieCollection() throws Exception {
+//        doNothing().when(mockMCS.deleteCollectionById(anyInt()));
+//
 //        mockMvc.perform(MockMvcRequestBuilders.delete("/movieCollections/delete/" + accountDTO.getId())
 //                .contentType(MediaType.APPLICATION_JSON_VALUE));
-    }
+//    }
 
 }

@@ -1,21 +1,17 @@
 package com.revature.spring_boot.web.controllers;
 
+import com.google.gson.Gson;
 import com.revature.spring_boot.models.Movies;
 import com.revature.spring_boot.repos.AccountRepository;
 import com.revature.spring_boot.services.MovieService;
 import com.revature.spring_boot.web.dtos.MovieDTO;
 import com.revature.spring_boot.web.security.TokenGenerator;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,13 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Transactional
 @SpringBootTest
@@ -106,13 +100,35 @@ public class MovieControllerTest {
 
 
     @Test
+    public void test_constructor(){
+        MovieController movieController = new MovieController(mockMovieService);
+        movieController = null;
+    }
+
+
+    @Test
     public void test_getAllMovies() throws Exception {
 
         when(mockMovieService.getMovieList()).thenReturn(moviesList);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/movie/getAll")
+        mockMvc.perform(MockMvcRequestBuilders.get("/movie/getAll")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+
+    @Test
+    public void test_saveNewMovie() throws Exception {
+
+        when(mockMovieService.saveNewMovie(any(MovieDTO.class))).thenReturn(movie1);
+
+        Gson gson = new Gson();
+        String jsonLine = gson.toJson(movieDTO1);
+
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/movie/save")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonLine))
+                .andExpect(MockMvcResultMatchers.status().isCreated());
     }
 
 
