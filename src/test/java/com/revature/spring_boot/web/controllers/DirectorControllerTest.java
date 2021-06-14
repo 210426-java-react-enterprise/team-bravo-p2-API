@@ -58,7 +58,7 @@ public class DirectorControllerTest {
 
         when(mockDirectorService.getDirectorList()).thenReturn(directorList);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/director/getAll")
+        mockMvc.perform(MockMvcRequestBuilders.get("/director/get-all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 

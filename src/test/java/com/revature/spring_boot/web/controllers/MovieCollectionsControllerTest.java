@@ -141,7 +141,7 @@ public class MovieCollectionsControllerTest {
         when(mockMCS.getAllMovieCollections()).thenReturn(movieCollectionsList);//this may be pointless
 
         this.mockMvc.perform(MockMvcRequestBuilders
-                .get("/movieCollections/getAll")
+                .get("/movieCollections/get-all")
                 .contentType(MediaType.APPLICATION_JSON))
                 //.andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
                 //.andExpect(MockMvcResultMatchers.jsonPath("$[0].getUserDescrip").value("This is just a test."))
@@ -158,7 +158,7 @@ public class MovieCollectionsControllerTest {
 
         when(mockMCS.getMovieCollectionsById(any(Integer.class))).thenReturn(movieCollections);//pointless?
 
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/movieCollections/getByID/1")
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/movieCollections/get-by-id/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 

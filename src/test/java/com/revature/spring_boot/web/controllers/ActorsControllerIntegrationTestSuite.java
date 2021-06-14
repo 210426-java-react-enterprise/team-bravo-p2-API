@@ -39,7 +39,7 @@ public class ActorsControllerIntegrationTestSuite {
     @Test
     public void test_getAllActors() throws Exception{
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/actors/getAll")
+        mockMvc.perform(MockMvcRequestBuilders.get("/actors/get-all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
