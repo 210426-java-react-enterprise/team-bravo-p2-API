@@ -5,7 +5,7 @@ package com.revature.spring_boot.exceptions;
  * User: Jbialon
  * Date: 6/8/2021
  * Time: 8:07 PM
- * Description: {Insert Description}
+ * Description: Exception thrown when no item is found when searching
  */
 public class ResourceNotFoundException extends RuntimeException {
 

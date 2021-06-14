@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+/**
+ * Controller class exposing movie based endpoints
+ */
 @RestController
 @RequestMapping("/movie")
 public class MovieController {
@@ -27,7 +30,11 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
+    /**
+     * gets all movies currently in the data layer via service layer
+     * @return
+     */
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<MovieDTO> getAllMovies(){
         List<MovieDTO> movieDTOList = movieService.getMovieList().stream()
                 .map(MovieDTO::new)
@@ -35,6 +42,11 @@ public class MovieController {
         return movieDTOList;
     }
 
+    /**
+     * Saves a new movie to the data layer utilizing the service layer
+     * @param newMovie
+     * @return
+     */
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/save")
     @ResponseBody

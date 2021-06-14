@@ -9,6 +9,11 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
+/**
+ *
+ *  Model used for persisting or using an existing movie to/from the database
+ *
+ */
 @Entity
 @Table(name = "movies")
 public class Movies {

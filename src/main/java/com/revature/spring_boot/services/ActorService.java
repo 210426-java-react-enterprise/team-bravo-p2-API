@@ -18,6 +18,9 @@ import java.util.List;
  * Description: {Insert Description}
  */
 
+/**
+ * Service layer for validating and persisting actors
+ */
 @Service
 @Transactional
 public class ActorService {

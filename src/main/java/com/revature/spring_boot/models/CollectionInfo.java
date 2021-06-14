@@ -11,6 +11,12 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
+
+/**
+ *
+ *  Model used for persisting or using an existing collection info item to/from the database
+ *
+ */
 @Entity
 @Table(name = "collection_info")
 public class CollectionInfo {
@@ -53,7 +59,7 @@ public class CollectionInfo {
     public CollectionInfo(CollectionInfoDTO collectionInfoDTO){
         this.collectionName = collectionInfoDTO.getCollectionName();
         this.acctId = new Account(collectionInfoDTO.getAccount());
-        this.collectionName = collectionInfoDTO.getCollectionName();
+        //this.collectionName = collectionInfoDTO.getCollectionName();
         this.description = collectionInfoDTO.getCollectionDescrip();
         this.collectionType = new CollectionType(collectionInfoDTO.getCollType());
     };

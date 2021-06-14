@@ -5,7 +5,7 @@ package com.revature.spring_boot.exceptions;
  * User: Jbialon
  * Date: 6/8/2021
  * Time: 8:10 PM
- * Description: {Insert Description}
+ * Description: Exception used when is a problem relating to the database connection
  */
 public class DataSourceException extends RuntimeException {
 

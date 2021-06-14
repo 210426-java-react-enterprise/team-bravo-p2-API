@@ -14,7 +14,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.revature.spring_boot.config"))
+                .apis(RequestHandlerSelectors.basePackage("com.revature.spring_boot"))
                 .paths(PathSelectors.any())
                 .build();
     }

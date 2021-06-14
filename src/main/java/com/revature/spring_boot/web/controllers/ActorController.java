@@ -22,7 +22,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * User: Jbialon
  * Date: 6/10/2021
  * Time: 8:44 AM
- * Description: {Insert Description}
+ * Description: Controller class exposing actor based endpoints
  */
 
 @RestController
@@ -37,7 +37,11 @@ public class ActorController {
         this.actorService = actorService;
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
+    /**
+     * returns all actors currently in the database
+     * @return
+     */
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<ActorDTO> getAllCollections() {
 
         List<ActorDTO> actors = actorService.getAllActors()

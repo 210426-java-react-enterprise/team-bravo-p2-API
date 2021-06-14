@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * User: Jbialon
  * Date: 6/10/2021
  * Time: 8:32 AM
- * Description: {Insert Description}
+ * Description: SQL interactions for Actor models
  */
 public interface ActorRepository extends JpaRepository<Actor, Integer> {
 }

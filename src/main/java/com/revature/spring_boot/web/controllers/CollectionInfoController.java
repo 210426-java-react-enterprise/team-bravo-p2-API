@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+/**
+ * Controller class exposing user collection based endpoints
+ */
 @RestController
 @RequestMapping("/collection")
 public class CollectionInfoController {
@@ -36,7 +39,12 @@ public class CollectionInfoController {
 
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
+    /**
+     * Gets all existing user collections
+     * @param req
+     * @return
+     */
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<CollectionInfoDTO> getAllCollections(HttpServletRequest req) {
 
         List<CollectionInfoDTO> collectionsInfo = collectionInfoService.getAllCollectionInfo()
@@ -47,6 +55,11 @@ public class CollectionInfoController {
         return collectionsInfo;
     }
 
+    /**
+     * Saves a new collection to the data layer when called
+     * @param collectionInfo
+     * @return
+     */
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/save")
     @ResponseBody
@@ -68,7 +81,12 @@ public class CollectionInfoController {
 //        return registeredUser;
 //    }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getInfoByID")
+    /**
+     * Gets a collection via id from the service layer when called
+     * @param req
+     * @return
+     */
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-info-by-id")
         public List<CollectionInfoDTO> getCollectionInfoByID(HttpServletRequest req){
         int accountID = tokenParser.tokenID(req);
         System.out.println(accountID);
@@ -81,5 +99,16 @@ public class CollectionInfoController {
                 .collect(Collectors.toList());
           
         return collectionInfo;
+    }
+
+    /**
+     * Delets a collection by id
+     * @param collectionId
+     */
+    @DeleteMapping(value = "/delete/{collectionId}")
+    public void deleteMovieCollection(@PathVariable(value = "collectionId") int collectionId) {
+
+        collectionInfoService.deleteCollectionById(collectionId);
+
     }
 }

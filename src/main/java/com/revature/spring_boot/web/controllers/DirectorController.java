@@ -14,6 +14,9 @@ import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+/**
+ * Controller class exposing director based endpoints
+ */
 @RestController
 @RequestMapping("/director")
 public class DirectorController {
@@ -26,7 +29,11 @@ public class DirectorController {
         this.directorService = directorService;
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
+    /**
+     * Gets all the persisted directors via the service layer
+     * @return
+     */
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<DirectorDTO> getAllDirectors(){
         List<DirectorDTO> directorDTOList = directorService.getDirectorList().stream()
                 .map(DirectorDTO::new)

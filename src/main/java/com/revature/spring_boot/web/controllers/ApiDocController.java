@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.view.RedirectView;
 
+/**
+ * Swagger endpoint
+ */
 @Controller
 @RequestMapping("api/docs")
 public class ApiDocController {

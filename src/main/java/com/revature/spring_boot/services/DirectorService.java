@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Service layer for validating and persisting DirectorService
+ */
 @Service
 @Transactional
 public class DirectorService {
@@ -20,6 +23,10 @@ public class DirectorService {
         this.directorRepository = directorRepository;
     }
 
+    /**
+     * Makes the repository call to list all directors from the data layer
+     * @return
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<Director> getDirectorList(){
         return directorRepository.findAll();

@@ -31,7 +31,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * User: Jbialon
  * Date: 6/7/2021
  * Time: 11:51 AM
- * Description: {Insert Description}
+ * Description: Controller class exposing movie collection items based endpoints
  */
 
 @RestController
@@ -48,7 +48,11 @@ public class MovieCollectionsController {
         this.tokenParser = tokenParser;
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
+    /**
+     * returns all currently persisted movie collection items via the service layer
+     * @return
+     */
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<MovieCollectionsDTO> getAllMovieCollections() {
         List<MovieCollectionsDTO> movieCollections = movieCollectionService.getAllMovieCollections()
                 .stream()
@@ -59,8 +63,13 @@ public class MovieCollectionsController {
 
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getByID")
-    public MovieCollectionsDTO getMovieCollectionsById(@PathVariable int movieCollectionsId) {
+    /**
+     * returns a movie collection item from the service layer via id
+     * @param movieCollectionsId
+     * @return
+     */
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-by-id/{id}")
+    public MovieCollectionsDTO getMovieCollectionsById(@PathVariable("id") int movieCollectionsId) {
         MovieCollectionsDTO movCollDTO = new MovieCollectionsDTO(movieCollectionService.getMovieCollectionsById(movieCollectionsId));
 
         return movCollDTO;
@@ -73,29 +82,42 @@ public class MovieCollectionsController {
 //        return movieCollectionService.updateMovieCollection(movieRequest);
 //    }
 
+    /**
+     * updates a movie collection item information via ad utilizing the service layer
+     * @param movieCollectionsId
+     * @param movieCollect
+     * @return
+     */
     @PutMapping(produces = APPLICATION_JSON_VALUE, value = "/update/{movieCollectionsId}")
-    public MovieCollectionsDTO updateMovieCollectionById(@PathVariable(value= "movieCollectionsId") int movieCollectionsId,
-                                                                      @RequestBody MovieCollections movieCollect){
+    public MovieCollectionsDTO updateMovieCollectionById(@PathVariable(value="movieCollectionsId") int movieCollectionsId,
+                                                                      @RequestBody MovieCollectionInsertDTO movieCollect){
        MovieCollectionsDTO updatedMovCollDTO = new MovieCollectionsDTO(movieCollectionService.updateMovieCollectionById(movieCollectionsId, movieCollect));
        return  updatedMovCollDTO;
     }
 
+    /**
+     * Adds a new movie collection item to the data layer via the service layer
+     * @param newCollection
+     * @return
+     */
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "/save")
     @ResponseBody
     public MovieCollectionInsertDTO createMovieCollection(@RequestBody @Valid MovieCollectionInsertDTO newCollection){
         MovieCollectionInsertDTO savedItem = movieCollectionService.saveCollection(newCollection);
 
-        if(savedItem != null){
-            return savedItem;
-        } else { return null;}
+        return savedItem;
     }
 
 
+    /**
+     * removes a movie collection item from the data layer via the service layer
+     * @param movieCollectionsId
+     */
     @DeleteMapping(value = "/delete/{movieCollectionsId}")
     public void deleteMovieCollection(@PathVariable(value = "movieCollectionsId") int movieCollectionsId) {
 
-        movieCollectionService.deleteCollectionById((movieCollectionsId));
+        movieCollectionService.deleteCollectionById(movieCollectionsId);
 
     }
 }

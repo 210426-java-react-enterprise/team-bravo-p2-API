@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * User: Jbialon
  * Date: 6/8/2021
  * Time: 7:52 PM
- * Description: {Insert Description}
+ * Description: Validation and Repo communication layer for Accounts
  */
 
 @Service
@@ -33,8 +33,13 @@ public class AccountService {
         this.userRepo = userRepo;
     }
 
+    /**
+     * Checks if username is available based on user input
+     * @param username
+     * @return
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
-    public boolean isUsernameAvailable(String username) {
+    private boolean isUsernameAvailable(String username) {
 
         if (!isValid(username, "username"))
             throw new InvalidRequestException("Invalid username value provided!");
@@ -47,8 +52,13 @@ public class AccountService {
 
     }
 
+    /**
+     *  Checks if email is available based on user input
+     * @param email
+     * @return
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
-    public boolean isEmailAvailable(String email) {
+    private boolean isEmailAvailable(String email) {
 
         if (!isValid(email, "email"))
             throw new InvalidRequestException("Invalid email value provided!");
@@ -62,6 +72,13 @@ public class AccountService {
 
     }
 
+    /**
+     * Once user input checks are completed persist the user account to the data layer
+     * @param newAcct
+     * @return
+     * @throws InvalidRequestException
+     * @throws ResourcePersistenceException
+     */
     @Transactional(propagation = Propagation.REQUIRED)
     public Account registerAccount(Account newAcct) throws InvalidRequestException, ResourcePersistenceException {
 
@@ -78,6 +95,12 @@ public class AccountService {
         return acctRepo.save(newAcct);
     }
 
+    /**
+     * Registers the users information to the data layer
+     * @param newUser
+     * @throws InvalidRequestException
+     * @throws ResourcePersistenceException
+     */
     @Transactional(propagation = Propagation.REQUIRED)
     public void registerUser(User newUser) throws InvalidRequestException, ResourcePersistenceException {
 
@@ -87,6 +110,13 @@ public class AccountService {
     }
 
 
+    /**
+     * Used to ensure the proper user gets access to their account
+     * @param username
+     * @param password
+     * @return
+     * @throws AuthException
+     */
     @Transactional(readOnly = true)
     public Account authenticate(String username, String password) throws AuthException {
 
@@ -103,7 +133,12 @@ public class AccountService {
 
     }
 
-    public void isAccountValid(Account a) throws InvalidRequestException {
+    /**
+     * Checks that the user provided account data is valid
+     * @param a
+     * @throws InvalidRequestException
+     */
+    private void isAccountValid(Account a) throws InvalidRequestException {
 
         if (a == null)
             throw new InvalidRequestException("A null user was provided.");
@@ -119,7 +154,12 @@ public class AccountService {
 
     }
 
-    public void isUserValid(User u) throws InvalidRequestException {
+    /**
+     * Checks if the user provided data regarding user information is valid
+     * @param u
+     * @throws InvalidRequestException
+     */
+    private void isUserValid(User u) throws InvalidRequestException {
 
         if (u == null)
             throw new InvalidRequestException("A null user was provided.");
@@ -132,7 +172,13 @@ public class AccountService {
 
     }
 
-    public boolean isValid(String str, String fieldName) {
+    /**
+     * Used to validate user input when creating an account
+     * @param str
+     * @param fieldName
+     * @return
+     */
+    private boolean isValid(String str, String fieldName) {
 
         if (str == null || str.trim().isEmpty()) return false;
 

@@ -11,6 +11,12 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
+
+/**
+ *
+ *  Model used for persisting or using an existing account to/from the database
+ *
+ */
 @Entity
 @Table(name = "accounts")
 public class Account {
