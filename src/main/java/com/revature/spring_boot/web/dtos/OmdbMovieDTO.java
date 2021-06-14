@@ -31,6 +31,7 @@ public class OmdbMovieDTO {
     private String resp;
     private String actor;
     private String director;
+    private String imgUrl;
     private List<String> actors;
     private List<String> directors;
 
@@ -50,6 +51,7 @@ public class OmdbMovieDTO {
                    @JsonProperty("Plot") String description,
                    @JsonProperty("Type") String type,
                    @JsonProperty("Production")String prodCompany,
+                   @JsonProperty("Poster")String imgUrl,
                    @JsonProperty("Response")String resp,
                    @JsonProperty("Actors") String actor,
                    @JsonProperty("Director") String director
@@ -62,6 +64,7 @@ public class OmdbMovieDTO {
         this.description = description;
         this.type = type;
         this.prodCompany = prodCompany;
+        this.imgUrl = imgUrl;
         this.resp = resp;
         actors = new ArrayList();
         directors = new ArrayList();
@@ -153,6 +156,14 @@ public class OmdbMovieDTO {
 
     public void setResp(String resp) {
         this.resp = resp;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     @Override
