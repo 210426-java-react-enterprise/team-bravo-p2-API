@@ -19,7 +19,7 @@ import java.util.List;
  * User: Jbialon
  * Date: 6/8/2021
  * Time: 9:56 PM
- * Description: {Insert Description}
+ * Description: Service layer for validating and persisting CollectionInfo
  */
 
 @Service
@@ -33,6 +33,10 @@ public class CollectionInfoService {
         this.collectionInfoRepo = collectionInfoRepo;
     }
 
+    /**
+     * makes the repo call to delete a collection absed on ID
+     * @param collectionId
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
     public void deleteCollectionById(int collectionId) {
         CollectionInfo existingCollection = collectionInfoRepo.findById(collectionId)
@@ -40,11 +44,20 @@ public class CollectionInfoService {
             collectionInfoRepo.delete(existingCollection);
     }
 
+    /**
+     * Repository call to list all collections
+     * @return
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<CollectionInfo> getAllCollectionInfo() {
         return collectionInfoRepo.findAll();
     }
 
+    /**
+     * Repository call to save a new collection
+     * @param collectionInfo
+     * @return
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
     public CollectionInfo saveCollectionInfo(CollectionInfoDTO collectionInfo){
 

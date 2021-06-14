@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Service layer for CollectionTypes
+ */
 @Service
 @Transactional
 public class CollectionTypeService {
@@ -21,6 +24,10 @@ public class CollectionTypeService {
         this.collectionTypeRepo = collectionTypeRepo;
     }
 
+    /**
+     * Makes the repository call to get all CollectionTypes from the data layer
+     * @return
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<CollectionType> getAllCollectionTypes(){return collectionTypeRepo.findAll();}
 

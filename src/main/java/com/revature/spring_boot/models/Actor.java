@@ -14,7 +14,11 @@ import java.util.List;
  *
  */
 
-
+/**
+ *
+ *  Model used for persisting or using an existing actor to/from the database
+ *
+ */
 @Entity
 @Table(name = "actors")
 public class Actor {

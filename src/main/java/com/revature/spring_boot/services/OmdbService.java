@@ -18,7 +18,7 @@ import java.util.List;
  * User: Jbialon
  * Date: 6/10/2021
  * Time: 10:51 PM
- * Description: {Insert Description}
+ * Description: Service layer for validating and grabbing movies from the OMDB api
  */
 
 @Service
@@ -31,6 +31,11 @@ public class OmdbService {
         this.omdbTemplates = omdbTemplates;
     }
 
+    /**
+     * Searched the OMDB and returns multiple movies for a user to choose from
+     * @param title
+     * @return
+     */
     public List<OmdbMovieSearchItemDTO> multiSearch(String title) {
 
         if (!isValidInput(title)) {
@@ -52,6 +57,11 @@ public class OmdbService {
         return returnValue;
     }
 
+    /**
+     * Searches OMDB for the first occurence of a movie tile
+     * @param title
+     * @return
+     */
     public MovieDTO searchByTitle(String title) {
 
         if (!isValidInput(title)) {
@@ -73,6 +83,11 @@ public class OmdbService {
         return movieDTO;
     }
 
+    /**
+     * Grabs a movie from OMDB using it's unique IMDB id
+     * @param imdbId
+     * @return
+     */
     public MovieDTO searchByImdbId(String imdbId) {
 
         if (!isValidInput(imdbId)) {
@@ -98,6 +113,11 @@ public class OmdbService {
         return movieDTO;
     }
 
+    /**
+     * Slims down the genres returned to one entry
+     * @param movie
+     * @return
+     */
     private OmdbMovieDTO genreSlim(OmdbMovieDTO movie) {
 
         if(movie.getGenre().contains(",")) {
@@ -108,6 +128,11 @@ public class OmdbService {
 
     }
 
+    /**
+     * Ensures only movies returned within search results
+     * @param multiSearchResult
+     * @return
+     */
     private List<OmdbMovieSearchItemDTO> includeOnlyMovies(List<OmdbMovieSearchItemDTO> multiSearchResult) {
 
         List<OmdbMovieSearchItemDTO> removalList = new ArrayList<>();
@@ -126,6 +151,11 @@ public class OmdbService {
 
     }
 
+    /**
+     * Checks the media type upon return
+     * @param movie
+     * @return
+     */
     private boolean movieCheck(OmdbMovieDTO movie) {
 
         if (!movie.getType().equals("movie")) {
@@ -136,6 +166,11 @@ public class OmdbService {
 
     }
 
+    /**
+     * Packages an OmdbMovieDTO into a MovieDTO
+     * @param movie
+     * @return
+     */
     private MovieDTO packageAsMovieDTO(OmdbMovieDTO movie) {
 
         movie.setLengthMin(movie.getLengthString());
@@ -147,7 +182,11 @@ public class OmdbService {
         return movieDTO;
     }
 
-
+    /**
+     * replaces spaces in userinput with +'s
+     * @param input
+     * @return
+     */
     private String prepareInput(String input) {
 
         input.trim();
@@ -157,6 +196,11 @@ public class OmdbService {
         return input;
     }
 
+    /**
+     * Validates user input by length
+     * @param input
+     * @return
+     */
     private boolean isValidInput(String input) {
 
         if (input.length() == 0) {

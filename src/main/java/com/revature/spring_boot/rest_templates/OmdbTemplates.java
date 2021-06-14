@@ -17,11 +17,21 @@ import org.springframework.web.client.RestTemplate;
  * Description: {Insert Description}
  */
 
+/**
+ *  Class used to make third party calls to the OMDB API
+ */
 @Component
 public class OmdbTemplates {
 
     private String apiUrl = "http://www.omdbapi.com/?apikey=8fb2906&";
 
+    /**
+     *
+     *  Does a general search by movie title returning an item containing a list of omdb formatted movies
+     *
+     * @param title
+     * @return
+     */
     public OmdbSearchDTO omdbMultiSearch(String title){
 
         OmdbSearchDTO returnVal = new OmdbSearchDTO();
@@ -46,6 +56,13 @@ public class OmdbTemplates {
 
     }
 
+    /**
+     *
+     * Brings back the first occurrence in a title search from OMDB
+     *
+     * @param title
+     * @return
+     */
     public OmdbMovieDTO searchOmdbByTitle(String title) {
 
         OmdbMovieDTO returnVal = new OmdbMovieDTO();
@@ -70,6 +87,13 @@ public class OmdbTemplates {
 
     }
 
+    /**
+     *
+     *  Queries the OMDB API using the most unique identifier best to be used in tandem with multisearch so the user gets the correct movie they select
+     *
+     * @param imdbId
+     * @return
+     */
     public OmdbMovieDTO searchOmdbByImdbId(String imdbId) {
 
         OmdbMovieDTO returnVal = new OmdbMovieDTO();

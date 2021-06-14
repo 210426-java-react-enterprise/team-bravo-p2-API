@@ -17,7 +17,7 @@ import java.util.List;
  * User: Jbialon
  * Date: 6/7/2021
  * Time: 11:42 AM
- * Description: {Insert Description}
+ * Description: SQL interactions for MovieCollection models
  */
 
 @Repository
@@ -29,6 +29,18 @@ public interface MovieCollectionsRepository extends JpaRepository<MovieCollectio
 //  @Query("FROM MovieCollections)
 //    List<MovieCollections> findAllMovieCollections();
 
+    /**
+     *
+     * Inserts a movie item to a collection based on all of it's required info
+     *
+     * @param owned
+     * @param watched
+     * @param userRating
+     * @param userComment
+     * @param tradeable
+     * @param collectionInfo
+     * @param movieId
+     */
     @Transactional
     @Modifying
     @Query(

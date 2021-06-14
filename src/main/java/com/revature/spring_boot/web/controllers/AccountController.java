@@ -25,6 +25,9 @@ import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+/**
+ * Controller class exposing account based endpoints
+ */
 @RestController
 @RequestMapping("/accounts")
 public class AccountController {
@@ -40,6 +43,12 @@ public class AccountController {
         this.jwtConfig = jwtConfig;
     }
 
+    /**
+     * Route a user would use to login
+     * @param creds
+     * @param resp
+     * @return
+     */
     @PostMapping(value = "/login", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public AccountDTO authenticate(@RequestBody @Valid Credentials creds, HttpServletResponse resp) {
         Account account = accountService.authenticate(creds.getUsername(), creds.getPassword());
@@ -49,6 +58,10 @@ public class AccountController {
         return new AccountDTO(account);
     }
 
+    /**
+     * Route a user would use to register a new account
+     * @param regDTO
+     */
     @PostMapping(value="/register", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public void register(@RequestBody @Valid RegDTO regDTO){
         Account account = accountService.registerAccount(new Account(regDTO.getEmail(), regDTO.getUsername(), regDTO.getPassword()));

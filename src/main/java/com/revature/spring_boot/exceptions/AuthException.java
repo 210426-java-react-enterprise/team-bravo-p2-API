@@ -5,7 +5,7 @@ package com.revature.spring_boot.exceptions;
  * User: Jbialon
  * Date: 6/8/2021
  * Time: 7:59 PM
- * Description: {Insert Description}
+ * Description: Authintication error for when users enter the wrong login information.
  */
 public class AuthException extends RuntimeException {
 

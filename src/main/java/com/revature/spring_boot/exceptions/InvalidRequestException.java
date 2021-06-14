@@ -5,7 +5,7 @@ package com.revature.spring_boot.exceptions;
  * User: Jbialon
  * Date: 6/8/2021
  * Time: 8:05 PM
- * Description: {Insert Description}
+ * Description: Exception used when invalid input is provided
  */
 public class InvalidRequestException extends RuntimeException {
 

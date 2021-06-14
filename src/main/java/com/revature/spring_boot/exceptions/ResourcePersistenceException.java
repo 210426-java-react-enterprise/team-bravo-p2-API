@@ -5,7 +5,7 @@ package com.revature.spring_boot.exceptions;
  * User: Jbialon
  * Date: 6/8/2021
  * Time: 8:23 PM
- * Description: {Insert Description}
+ * Description: Exception for when there is an issue saving an item to the data layer
  */
 public class ResourcePersistenceException extends DataSourceException {
 

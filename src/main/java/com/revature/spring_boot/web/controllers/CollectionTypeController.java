@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+/**
+ * Controller class exposing CollectionType based endpoints
+ */
 @RestController
 @RequestMapping("/collectionType")
 public class CollectionTypeController {
@@ -30,6 +33,10 @@ public class CollectionTypeController {
 //
 //    }
 
+    /**
+     * Gets all collection type possibilities from the service layer
+     * @return
+     */
     @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<CollectionTypeDTO> getAllCollectionTypes() {
         List<CollectionTypeDTO> collectionTypes = collectionTypeService.getAllCollectionTypes()

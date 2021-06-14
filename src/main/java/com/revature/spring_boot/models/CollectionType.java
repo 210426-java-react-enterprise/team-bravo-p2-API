@@ -10,6 +10,12 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
+
+/**
+ *
+ *  Model for using an existing account type from the database
+ *
+ */
 @Entity
 @Table(name="collection_types")
 public class CollectionType {

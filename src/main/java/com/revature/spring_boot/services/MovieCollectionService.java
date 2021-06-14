@@ -23,7 +23,7 @@ import java.util.Optional;
  * User: Jbialon
  * Date: 6/8/2021
  * Time: 9:58 PM
- * Description: {Insert Description}
+ * Description: Service layer for validating and persisting MovieCollection items
  */
 
 @Service
@@ -37,11 +37,20 @@ public class MovieCollectionService {
         this.collectionInfoRepo = collectionInfoRepo;
     }
 
+    /**
+     * Repository call for getting all movie collection items
+     * @return
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<MovieCollections> getAllMovieCollections() {
         return collectionInfoRepo.findAll();
     }
 
+    /**
+     * repository call for getting a Movie collection item via it's id
+     * @param id
+     * @return
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
     public MovieCollections getMovieCollectionsById(int id) {
 
@@ -56,6 +65,11 @@ public class MovieCollectionService {
 
     }
 
+    /**
+     * Makes a repository call to persist a movie collection item to the data layer
+     * @param collection
+     * @return
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
     public MovieCollectionInsertDTO saveCollection(MovieCollectionInsertDTO collection){
 
@@ -65,6 +79,12 @@ public class MovieCollectionService {
 
         return collection; }
 
+    /**
+     * Makes a repository call to update a movie collections information via id (In the service layer)
+     * @param movieCollectionsId
+     * @param movieCollect
+     * @return
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
     public MovieCollections updateMovieCollectionById(int movieCollectionsId, MovieCollectionInsertDTO movieCollect) {
 
@@ -102,6 +122,10 @@ public class MovieCollectionService {
 //    }
 
 
+    /**
+     * makes a repository call to delete a movie collection item from the data layer
+     * @param movieCollectionsId
+     */
     public void deleteCollectionById(int movieCollectionsId) {
         MovieCollections existingItem = collectionInfoRepo.findById(movieCollectionsId)
                 .orElseThrow(() -> new ResourceNotFoundException());

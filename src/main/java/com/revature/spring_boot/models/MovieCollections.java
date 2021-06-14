@@ -6,6 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+/**
+ *
+ *  Model used for persisting or using an existing movie item to a collection to/from the database
+ *
+ */
 @Entity
 @Table(name = "movie_collections")
 public class MovieCollections {

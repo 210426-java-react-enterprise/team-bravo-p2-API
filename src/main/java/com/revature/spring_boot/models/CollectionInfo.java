@@ -11,6 +11,12 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
+
+/**
+ *
+ *  Model used for persisting or using an existing collection info item to/from the database
+ *
+ */
 @Entity
 @Table(name = "collection_info")
 public class CollectionInfo {

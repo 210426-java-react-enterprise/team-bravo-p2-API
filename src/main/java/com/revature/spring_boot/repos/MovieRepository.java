@@ -9,9 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * SQL interactions for Movie models
+ */
 @Repository
 public interface MovieRepository extends JpaRepository<Movies, Integer> {
 
+    /**
+     *
+     *  Checks to see if a movie has already been saved to the data layer
+     *
+     * @param title
+     * @param year
+     * @param mpaaRating
+     * @param lengthMin
+     * @param genre
+     * @param descrip
+     * @param prodCompany
+     * @return
+     */
     @Transactional
     @Query(
             value =
