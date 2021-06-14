@@ -1,0 +1,32 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+  pre_build:
+    commands:
+      - # S3 URI
+      - aws s3 cp s3://james-bialon-revature-bucket/p2-files/target/team-bravo-p2-API-1.0-SNAPSHOT.jar /root/ec2-user/team-bravo-p2-API-1.0-SNAPSHOT.jar
+      - mvn install:install-file -Dfile=/root/ec2-user/team-bravo-p2-API-1.0-SNAPSHOT.jar -DgroupId=org.example -DartifactId=team-bravo-p2-API -Dversion=1.0-SNAPSHOT -Dpackaging=jar
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn package
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      #- mkdir artifact
+      - echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      - ls -al
+      - echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      - ls -al target/
+      - echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      - unzip target/team-bravo-p2-API-1.0-SNAPSHOT.jar -d ./
+      - ls -al
+      - echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      #- mv artifact/WEB-INF WEB-INF
+#artifacts:
+  #This creates an artifact with the following files. This artifact is passed to the next step in the build process.
+#  files:
+#    - WEB-INF/**/*
+#  name: artifact
