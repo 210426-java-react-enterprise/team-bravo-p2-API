@@ -59,8 +59,8 @@ public class MovieCollectionsController {
 
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getByID")
-    public MovieCollectionsDTO getMovieCollectionsById(@PathVariable int movieCollectionsId) {
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getByID/{id}")
+    public MovieCollectionsDTO getMovieCollectionsById(@PathVariable("id") int movieCollectionsId) {
         MovieCollectionsDTO movCollDTO = new MovieCollectionsDTO(movieCollectionService.getMovieCollectionsById(movieCollectionsId));
 
         return movCollDTO;
@@ -74,7 +74,7 @@ public class MovieCollectionsController {
 //    }
 
     @PutMapping(produces = APPLICATION_JSON_VALUE, value = "/update/{movieCollectionsId}")
-    public MovieCollectionsDTO updateMovieCollectionById(@PathVariable(value= "movieCollectionsId") int movieCollectionsId,
+    public MovieCollectionsDTO updateMovieCollectionById(@PathVariable(value="movieCollectionsId") int movieCollectionsId,
                                                                       @RequestBody MovieCollections movieCollect){
        MovieCollectionsDTO updatedMovCollDTO = new MovieCollectionsDTO(movieCollectionService.updateMovieCollectionById(movieCollectionsId, movieCollect));
        return  updatedMovCollDTO;
