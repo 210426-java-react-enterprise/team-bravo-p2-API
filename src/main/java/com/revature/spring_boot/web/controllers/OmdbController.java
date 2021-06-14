@@ -36,17 +36,17 @@ public class OmdbController {
         this.omdbService = omdbService;
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/multiSearch/{title}")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/multi-search/{title}")
     public List<OmdbMovieSearchItemDTO> omdbMultiSearch(@PathVariable String title) {
         return omdbService.multiSearch(title);
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/titleSearch/{title}")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/title-search/{title}")
     public MovieDTO omdbSearchByTitle(@PathVariable String title) {
         return omdbService.searchByTitle(title);
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/imdbSearch/{imdbId}")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/imdb-search/{imdbId}")
     public MovieDTO omdbSearchByImdbId(@PathVariable String imdbId) {
         return omdbService.searchByImdbId(imdbId);
     }

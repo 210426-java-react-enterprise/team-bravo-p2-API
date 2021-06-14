@@ -36,7 +36,7 @@ public class CollectionInfoController {
 
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<CollectionInfoDTO> getAllCollections(HttpServletRequest req) {
 
         List<CollectionInfoDTO> collectionsInfo = collectionInfoService.getAllCollectionInfo()
@@ -68,7 +68,7 @@ public class CollectionInfoController {
 //        return registeredUser;
 //    }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getInfoByID")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-info-by-id")
         public List<CollectionInfoDTO> getCollectionInfoByID(HttpServletRequest req){
         int accountID = tokenParser.tokenID(req);
         System.out.println(accountID);

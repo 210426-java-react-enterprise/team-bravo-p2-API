@@ -37,7 +37,7 @@ public class ActorController {
         this.actorService = actorService;
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<ActorDTO> getAllCollections() {
 
         List<ActorDTO> actors = actorService.getAllActors()

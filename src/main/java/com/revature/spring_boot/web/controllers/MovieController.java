@@ -27,7 +27,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<MovieDTO> getAllMovies(){
         List<MovieDTO> movieDTOList = movieService.getMovieList().stream()
                 .map(MovieDTO::new)

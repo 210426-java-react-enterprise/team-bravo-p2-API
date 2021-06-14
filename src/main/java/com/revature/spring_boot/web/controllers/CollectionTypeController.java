@@ -30,7 +30,7 @@ public class CollectionTypeController {
 //
 //    }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/getAll")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "/get-all")
     public List<CollectionTypeDTO> getAllCollectionTypes() {
         List<CollectionTypeDTO> collectionTypes = collectionTypeService.getAllCollectionTypes()
                 .stream()
