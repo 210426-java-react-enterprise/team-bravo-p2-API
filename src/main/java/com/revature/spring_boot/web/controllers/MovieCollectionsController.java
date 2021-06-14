@@ -75,7 +75,7 @@ public class MovieCollectionsController {
 
     @PutMapping(produces = APPLICATION_JSON_VALUE, value = "/update/{movieCollectionsId}")
     public MovieCollectionsDTO updateMovieCollectionById(@PathVariable(value="movieCollectionsId") int movieCollectionsId,
-                                                                      @RequestBody MovieCollections movieCollect){
+                                                                      @RequestBody MovieCollectionInsertDTO movieCollect){
        MovieCollectionsDTO updatedMovCollDTO = new MovieCollectionsDTO(movieCollectionService.updateMovieCollectionById(movieCollectionsId, movieCollect));
        return  updatedMovCollDTO;
     }

@@ -9,6 +9,7 @@ import com.revature.spring_boot.repos.AccountRepository;
 import com.revature.spring_boot.services.MovieCollectionService;
 import com.revature.spring_boot.web.dtos.AccountDTO;
 import com.revature.spring_boot.web.dtos.CollectionTypeDTO;
+import com.revature.spring_boot.web.dtos.MovieCollectionInsertDTO;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
 import com.revature.spring_boot.web.security.TokenGenerator;
 import org.junit.Assert;
@@ -168,7 +169,7 @@ public class MovieCollectionsControllerTest {
     @Test
     public void test_updateMovieCollectionById() throws Exception {
 
-        when(mockMCS.updateMovieCollectionById(any(Integer.class), any(MovieCollections.class))).thenReturn(movieCollections);
+        when(mockMCS.updateMovieCollectionById(any(Integer.class), any(MovieCollectionInsertDTO.class))).thenReturn(movieCollections);
 
         Gson gson = new Gson();
         String jsonLine = gson.toJson(movieCollections);

@@ -66,13 +66,13 @@ public class MovieCollectionService {
         return collection; }
 
     @Transactional(propagation = Propagation.SUPPORTS)
-    public MovieCollections updateMovieCollectionById(int movieCollectionsId, MovieCollections movieCollect) {
+    public MovieCollections updateMovieCollectionById(int movieCollectionsId, MovieCollectionInsertDTO movieCollect) {
 
         if(collectionInfoRepo.findById(movieCollectionsId).isPresent()) {
             MovieCollections existingCollectionItem = collectionInfoRepo.findById(movieCollectionsId).get();
 
-            existingCollectionItem.setUserComment(movieCollect.getUserComment());
-            existingCollectionItem.setTradeable(movieCollect.getTradeable());
+            existingCollectionItem.setUserComment(movieCollect.getUserDescrip());
+            existingCollectionItem.setTradeable(movieCollect.getTradable());
             existingCollectionItem.setWatched(movieCollect.getWatched());
             existingCollectionItem.setUserRating(movieCollect.getUserRating());
 
