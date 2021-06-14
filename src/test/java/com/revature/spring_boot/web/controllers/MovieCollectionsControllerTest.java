@@ -3,6 +3,7 @@ package com.revature.spring_boot.web.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.spi.json.GsonJsonProvider;
 import com.google.gson.Gson;
+import com.revature.spring_boot.exceptions.ResourceNotFoundException;
 import com.revature.spring_boot.models.*;
 import com.revature.spring_boot.repos.AccountRepository;
 import com.revature.spring_boot.services.MovieCollectionService;
@@ -10,6 +11,7 @@ import com.revature.spring_boot.web.dtos.AccountDTO;
 import com.revature.spring_boot.web.dtos.CollectionTypeDTO;
 import com.revature.spring_boot.web.dtos.MovieCollectionsDTO;
 import com.revature.spring_boot.web.security.TokenGenerator;
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +21,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,8 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @Transactional
 @SpringBootTest
@@ -167,51 +170,25 @@ public class MovieCollectionsControllerTest {
 
         when(mockMCS.updateMovieCollectionById(any(Integer.class), any(MovieCollections.class))).thenReturn(movieCollections);
 
-//        StringBuilder jsonTestLine = new StringBuilder();
-//        jsonTestLine.append("{\n");
-//        jsonTestLine.append("\"collection_id\":").append(movieCollections.getMovieId()).append("\n");
-//        jsonTestLine.append("\"owned\":").append(movieCollections.getOwned()).append("\n");
-//        jsonTestLine.append("\"watched\":").append(movieCollections.getWatched()).append("\n");
-//        jsonTestLine.append("\"user_rating\":").append(movieCollections.getUserRating()).append("\n");
-//        jsonTestLine.append("\"user_comment\":").append(movieCollections.getUserComment()).append("\n");
-//        jsonTestLine.append("\"tradeable\":").append(movieCollections.getTradeable()).append("\n");
-//        jsonTestLine.append("\"owned\":").append(movieCollections.getOwned()).append("\n");
-//        jsonTestLine.append("}");
-//
-//        String jsonStringLine = jsonTestLine.toString();
-
-        //GsonJsonProvider gson4 = new GsonJsonProvider();
-        //String jsonLine = gson4.toJson(movieCollections);
-
         Gson gson = new Gson();
         String jsonLine = gson.toJson(movieCollections);
-
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/movieCollections/update/" + accountDTO.getId())
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .accept(MediaType.APPLICATION_JSON)//unnecessary?
                 .characterEncoding("UTF-8")//unnecessary?
                 .content(jsonLine))
-                //.content(jsonStringLine))
-                //.content(movieCollections.toString()))//body
                 .andExpect(MockMvcResultMatchers.status().isOk());
-
 
     }
 
 
     @Test
-    public void test2_updateMovieCollectionById(){
+    public void test_deleteMovieCollection() throws Exception {
+        //doNothing().when(mockMCS.deleteCollectionById(anyInt()));
 
-    }
-
-
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+//        mockMvc.perform(MockMvcRequestBuilders.delete("/movieCollections/delete/" + accountDTO.getId())
+//                .contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
 }
