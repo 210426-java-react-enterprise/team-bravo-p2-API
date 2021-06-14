@@ -84,7 +84,7 @@ public class CollectionInfoController {
     }
 
     @DeleteMapping(value = "/delete/{collectionId}")
-    public void deleteMovieCollection(@PathVariable(value = "movieCollectionsId") int collectionId) {
+    public void deleteMovieCollection(@PathVariable(value = "collectionId") int collectionId) {
 
         collectionInfoService.deleteCollectionById(collectionId);
 
