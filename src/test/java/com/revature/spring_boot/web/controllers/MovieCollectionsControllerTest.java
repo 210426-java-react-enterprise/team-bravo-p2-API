@@ -141,10 +141,10 @@ public class MovieCollectionsControllerTest {
 
         when(mockMCS.getAllMovieCollections()).thenReturn(movieCollectionsList);//this may be pointless
 
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/movieCollections/getAll")
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/movieCollections/get-all")
                 .contentType(MediaType.APPLICATION_JSON))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$[0].getUserDescrip").value("This is just a test."))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$[0].getUserDescrip").value("This is just a test."))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.collection_id").value(movieCollectionsDTOList.get(0).getId()))
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.user_comment").value(movieCollectionsDTOList.get(0).getUserDescrip()));
@@ -158,7 +158,7 @@ public class MovieCollectionsControllerTest {
 
         when(mockMCS.getMovieCollectionsById(any(Integer.class))).thenReturn(movieCollections);//pointless?
 
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/movieCollections/getByID/1")
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/movieCollections/get-by-id/70")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
@@ -173,7 +173,7 @@ public class MovieCollectionsControllerTest {
         Gson gson = new Gson();
         String jsonLine = gson.toJson(movieCollections);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.put("/movieCollections/update/" + accountDTO.getId())
+        this.mockMvc.perform(MockMvcRequestBuilders.put("/movieCollections/update/70")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .accept(MediaType.APPLICATION_JSON)//unnecessary?
                 .characterEncoding("UTF-8")//unnecessary?

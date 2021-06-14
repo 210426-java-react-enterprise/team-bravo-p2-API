@@ -105,7 +105,7 @@ public class CollectionInfoControllerIntegrationTestSuite {
         String token = tokenGenerator.createJwt(mockAccount);
 
 
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/collection/getInfoByID").header("Authorization", token))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/collection/get-info-by-id").header("Authorization", token))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
 

@@ -91,7 +91,7 @@ public class OmdbControllerTest {
 
         when(mockOmdbService.multiSearch(any(String.class))).thenReturn(testList);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/omdb/multiSearch/" + movieSearchItemDTO.getTitle())
+        mockMvc.perform(MockMvcRequestBuilders.get("/omdb/multi-search/" + movieSearchItemDTO.getTitle())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
@@ -103,7 +103,7 @@ public class OmdbControllerTest {
 
         when(mockOmdbService.searchByTitle(any(String.class))).thenReturn(movieDTO);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/omdb/titleSearch/" + movieDTO.getTitle())
+        mockMvc.perform(MockMvcRequestBuilders.get("/omdb/title-search/" + movieDTO.getTitle())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 

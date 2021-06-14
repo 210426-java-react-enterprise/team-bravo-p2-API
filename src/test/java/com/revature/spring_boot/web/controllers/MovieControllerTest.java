@@ -111,7 +111,7 @@ public class MovieControllerTest {
 
         when(mockMovieService.getMovieList()).thenReturn(moviesList);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/movie/getAll")
+        mockMvc.perform(MockMvcRequestBuilders.get("/movie/get-all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
