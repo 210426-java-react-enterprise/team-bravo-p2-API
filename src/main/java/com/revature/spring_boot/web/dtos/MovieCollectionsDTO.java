@@ -47,6 +47,7 @@ public class MovieCollectionsDTO {
         this.watched = movieCollect.getWatched();
         this.tradable = movieCollect.getTradeable();
         this.userDescrip = movieCollect.getUserComment();
+        this.userRating = movieCollect.getUserRating();
     }
 
 
