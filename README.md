@@ -30,3 +30,12 @@ To-do list:
 * Expand collection types beyond just movies
 * Rewrite to include Spring Security library
 
+## Application Configuration
+   
+CLONE: https://github.com/210426-java-react-enterprise/team-bravo-p2-API.git
+
+Once cloned simply run the SQL table creation script provided in the ERD diagram folder in your DBMS of choice, then in the
+resources folder edit the application.properties file to include the secret value of your choice and the application.yml
+should be updated using your database credentials. 
+
+
